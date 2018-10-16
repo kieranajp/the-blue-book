@@ -1,16 +1,3 @@
-FROM node:8-slim as node
-
-WORKDIR /app
-
-COPY package.json yarn.lock webpack.mix.js ./
-COPY resources/assets ./resources/assets
-COPY vendor/laravel/spark-aurelius ./vendor/laravel/spark-aurelius
-
-RUN yarn
-RUN yarn prod
-
-#---
-
 FROM php:7.2-fpm-alpine
 
 ENV COMPOSER_VERSION=1.6.2 \
@@ -26,7 +13,7 @@ RUN set -ex \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure soap --enable-soap \
     && docker-php-ext-install gd opcache pdo pdo_pgsql bcmath intl soap \
-    && pecl install xdebug-${PHP_EXT_XDEBUG_VERSION} phpredis \
+    && pecl install xdebug-${PHP_EXT_XDEBUG_VERSION} phpredis ds \
     && docker-php-ext-enable xdebug \
     && apk del .build-dependencies
 
@@ -50,10 +37,6 @@ RUN set -ex \
 ENV APP_DIR /server/http/
 WORKDIR ${APP_DIR}
 COPY . ${APP_DIR}
-COPY --from=node app/yarn.lock  ${APP_DIR}
-COPY --from=node app/public/css ${APP_DIR}/public/css
-COPY --from=node app/public/js  ${APP_DIR}/public/js
-COPY --from=node app/node_modules ${APP_DIR}/node_modules
 
 ## Copy PHP ini based of off https://github.com/php/php-src/blob/PHP-7.1.1/php.ini-production
 COPY docker/php-fpm/php.ini ${PHP_INI_DIR}/
@@ -61,7 +44,6 @@ COPY docker/php-fpm/php.ini ${PHP_INI_DIR}/
 RUN set -ex \
     # Install project dependencies
     && composer install --prefer-dist --ignore-platform-reqs --no-interaction \
-    && chmod -R 777 /server/http/bootstrap/cache \
     ## Customize PHP fpm configuration
     && sed -i -e "s/;clear_env\s*=\s*no/clear_env = no/g" /usr/local/etc/php-fpm.conf \
     && sed -i -e "s/;request_terminate_timeout\s*=[^\n]*/request_terminate_timeout = 300/g" /usr/local/etc/php-fpm.conf \

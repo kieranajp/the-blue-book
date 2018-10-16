@@ -4,10 +4,19 @@
     "require": {
         "league/route": "^4.2",
         "league/container": "^3.2",
-        "league/fractal": "^0.17.0"
+        "league/fractal": "^0.17.0",
+        "php-ds/php-ds": "^1.2",
+        "http-interop/http-factory-diactoros": "^1.0"
     },
     "require-dev": {
-        "kahlan/kahlan": "^4.3"
+        "kahlan/kahlan": "^4.3",
+        "larapack/dd": "^1.1"
+    },
+    "autoload": {
+        "psr-4": { "BlueBook\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "BlueBook\\Tests\\": "tests/" }
     },
     "authors": [
         {
