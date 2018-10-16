@@ -6,6 +6,8 @@ class HealthCheckController
 {
     public function __invoke()
     {
-        dd('here');
+        return [
+            'status' => 'ok',
+        ];
     }
 }

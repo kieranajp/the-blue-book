@@ -5,7 +5,6 @@ namespace BlueBook\Infrastructure\Router;
 use Http\Factory\Diactoros\ResponseFactory;
 use League\Container\Container;
 use League\Route\Router as LeagueRouter;
-use League\Route\Strategy\JsonStrategy;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -31,7 +30,10 @@ class Router
         $this->container = $container;
 
         $responseFactory = new ResponseFactory();
-        $strategy = new JsonStrategy($responseFactory);
+
+        $strategy = new FractalStrategy($responseFactory);
+        $strategy->setContainer($container);
+
         $this->router = new LeagueRouter();
         $this->router->setStrategy($strategy);
     }
