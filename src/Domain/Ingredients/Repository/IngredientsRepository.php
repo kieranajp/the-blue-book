@@ -3,8 +3,9 @@
 namespace BlueBook\Domain\Ingredients\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
-use BlueBook\Domain\Ingredients\IngredientId;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
+use BlueBook\Infrastructure\Hydrator\HydratorInterface;
+use Ds\Vector;
 
 class IngredientsRepository implements IngredientsRepositoryInterface
 {
@@ -14,19 +15,42 @@ class IngredientsRepository implements IngredientsRepositoryInterface
     private $connection;
 
     /**
+     * @var HydratorInterface
+     */
+    private $hydrator;
+
+    /**
      * IngredientsRepository constructor.
      *
-     * @param \PDO $connection
+     * @param \PDO              $connection
+     * @param HydratorInterface $hydrator
      */
-    public function __construct(\PDO $connection)
+    public function __construct(\PDO $connection, HydratorInterface $hydrator)
     {
         $this->connection = $connection;
+        $this->hydrator = $hydrator;
+    }
+
+    public function all(): Vector
+    {
+        $stmt = $this->connection->prepare(
+            'SELECT * FROM ingredients;'
+        );
+
+        $stmt->execute();
+
+        $ingredients = new Vector();
+        while ($row = $stmt->fetch()) {
+            $ingredients->push($this->hydrator->hydrate($row));
+        }
+
+        return $ingredients;
     }
 
     public function find(IngredientIdInterface $ingredientId): Ingredient
     {
         $stmt = $this->connection->prepare(
-            'SELECT * FROM ingredients WHERE id = :ingredientId LIMIT 1;'
+            'SELECT * FROM ingredients WHERE uuid = :ingredientId LIMIT 1;'
         );
 
         $stmt->execute([
@@ -35,15 +59,6 @@ class IngredientsRepository implements IngredientsRepositoryInterface
 
         $row = $stmt->fetch();
 
-        return $this->hydrate($row);
-    }
-
-    // TODO: Move to hydrator class
-    private function hydrate(array $ingredient): Ingredient
-    {
-        return new Ingredient(
-            new IngredientId($ingredient['id']),
-            $ingredient['name']
-        );
+        return $this->hydrator->hydrate($row);
     }
 }
