@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbd8dd3aacc09c0353840b231ffaaaeb",
+    "content-hash": "833668ce65057549541e094587d095c7",
     "packages": [
         {
             "name": "http-interop/http-factory-diactoros",
@@ -257,6 +257,78 @@
                 "router"
             ],
             "time": "2018-10-16T12:52:48+00:00"
+        },
+        {
+            "name": "msgphp/domain",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/msgphp/domain.git",
+                "reference": "700e3a1a2a6dcb4c3f620209281f3748c01959dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/msgphp/domain/zipball/700e3a1a2a6dcb4c3f620209281f3748c01959dd",
+                "reference": "700e3a1a2a6dcb4c3f620209281f3748c01959dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.0"
+            },
+            "require-dev": {
+                "api-platform/core": "^2.2",
+                "doctrine/doctrine-bundle": "^1.8",
+                "doctrine/orm": "^2.6",
+                "elasticsearch/elasticsearch": "^6.0",
+                "psr/container": "^1.0",
+                "ramsey/uuid": "^3.7",
+                "ramsey/uuid-doctrine": "^1.4",
+                "simple-bus/message-bus": "^3.0",
+                "symfony/config": "^3.4|^4.0",
+                "symfony/dependency-injection": "^3.4.16|^4.0.16|^4.1.5",
+                "symfony/http-kernel": "^3.4|^4.0",
+                "symfony/messenger": "^4.1",
+                "symfony/phpunit-bridge": "^3.4.9|^4.0.9",
+                "symfony/property-access": "^3.4|^4.0",
+                "symfony/var-dumper": "^3.4|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MsgPhp\\Domain\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roland Franssen",
+                    "email": "franssen.roland@gmail.com"
+                }
+            ],
+            "description": "A base domain layer to rapidly built other domain layers",
+            "keywords": [
+                "command query responsibility segregation",
+                "cqrs",
+                "ddd",
+                "domain model",
+                "domain-driven-design",
+                "entity",
+                "es",
+                "event sourcing",
+                "rich domain model"
+            ],
+            "time": "2018-10-04T10:23:16+00:00"
         },
         {
             "name": "nikic/fast-route",
