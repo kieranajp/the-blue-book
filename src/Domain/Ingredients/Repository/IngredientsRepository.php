@@ -3,8 +3,8 @@
 namespace BlueBook\Domain\Ingredients\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
-use BlueBook\Domain\Ingredients\IngredientId;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
+use BlueBook\Infrastructure\Hydrator\HydratorInterface;
 
 class IngredientsRepository implements IngredientsRepositoryInterface
 {
@@ -14,13 +14,20 @@ class IngredientsRepository implements IngredientsRepositoryInterface
     private $connection;
 
     /**
+     * @var HydratorInterface
+     */
+    private $hydrator;
+
+    /**
      * IngredientsRepository constructor.
      *
-     * @param \PDO $connection
+     * @param \PDO              $connection
+     * @param HydratorInterface $hydrator
      */
-    public function __construct(\PDO $connection)
+    public function __construct(\PDO $connection, HydratorInterface $hydrator)
     {
         $this->connection = $connection;
+        $this->hydrator = $hydrator;
     }
 
     public function find(IngredientIdInterface $ingredientId): Ingredient
@@ -35,15 +42,6 @@ class IngredientsRepository implements IngredientsRepositoryInterface
 
         $row = $stmt->fetch();
 
-        return $this->hydrate($row);
-    }
-
-    // TODO: Move to hydrator class
-    private function hydrate(array $ingredient): Ingredient
-    {
-        return new Ingredient(
-            new IngredientId($ingredient['id']),
-            $ingredient['name']
-        );
+        return $this->hydrator->hydrate($row);
     }
 }
