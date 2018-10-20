@@ -2,14 +2,16 @@
 
 namespace BlueBook\Application\Transformer;
 
+use BlueBook\Domain\Ingredients\Ingredient;
 use League\Fractal\TransformerAbstract;
 
 class IngredientsTransformer extends TransformerAbstract
 {
-    public function transform($ingredient): array
+    public function transform(Ingredient $ingredient): array
     {
         return [
-            'hello' => 'world',
+            'id' => $ingredient->getIngredientId(),
+            'name' => $ingredient->getName(),
         ];
     }
 }

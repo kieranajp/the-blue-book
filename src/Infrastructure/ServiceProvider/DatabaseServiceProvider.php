@@ -26,7 +26,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
 
         $container->add(PDO::class)
             ->addArgument(sprintf(
-                '',
+                'pgsql:host=%s;port=%s;dbname=%s;user=%s;password=%s',
                 getenv('DB_HOST'),
                 getenv('DB_PORT') ?: '5432',
                 getenv('DB_NAME'),
