@@ -13,6 +13,7 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'emitter',
         'fractal',
+        ServerRequestInterface::class,
     ];
 
     /**
