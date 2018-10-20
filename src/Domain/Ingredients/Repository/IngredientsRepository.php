@@ -31,6 +31,9 @@ class IngredientsRepository implements IngredientsRepositoryInterface
         $this->hydrator = $hydrator;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function all(): Vector
     {
         $stmt = $this->connection->prepare(
@@ -47,6 +50,9 @@ class IngredientsRepository implements IngredientsRepositoryInterface
         return $ingredients;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function find(IngredientIdInterface $ingredientId): Ingredient
     {
         $stmt = $this->connection->prepare(

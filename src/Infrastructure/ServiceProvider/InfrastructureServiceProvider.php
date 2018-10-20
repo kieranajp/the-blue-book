@@ -10,6 +10,9 @@ use Zend\Diactoros\ServerRequestFactory;
 
 final class InfrastructureServiceProvider extends AbstractServiceProvider
 {
+    /**
+     * @var array
+     */
     protected $provides = [
         'emitter',
         'fractal',

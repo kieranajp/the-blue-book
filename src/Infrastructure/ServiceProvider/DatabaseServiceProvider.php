@@ -11,6 +11,9 @@ use PDO;
 
 class DatabaseServiceProvider extends AbstractServiceProvider
 {
+    /**
+     * @var array
+     */
     protected $provides = [
         IngredientsHydrator::class,
         IngredientsRepositoryInterface::class,

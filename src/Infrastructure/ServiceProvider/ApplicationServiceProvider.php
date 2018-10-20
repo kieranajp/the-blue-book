@@ -4,15 +4,15 @@ namespace BlueBook\Infrastructure\ServiceProvider;
 
 use BlueBook\Application\Controller\Ingredients\IndexIngredientsController;
 use BlueBook\Application\Transformer\IngredientsTransformer;
-use BlueBook\Domain\Ingredients\Repository\IngredientsHydrator;
-use BlueBook\Domain\Ingredients\Repository\IngredientsRepository;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use PDO;
 
 class ApplicationServiceProvider extends AbstractServiceProvider
 {
+    /**
+     * @var array
+     */
     protected $provides = [
         IndexIngredientsController::class,
     ];
