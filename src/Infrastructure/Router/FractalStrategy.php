@@ -2,6 +2,7 @@
 
 namespace BlueBook\Infrastructure\Router;
 
+use League\Fractal\Manager;
 use League\Fractal\Resource\ResourceAbstract;
 use League\Route\Route;
 use League\Route\Strategy\JsonStrategy;
@@ -33,6 +34,7 @@ class FractalStrategy extends JsonStrategy implements StrategyInterface
 
     private function transformResourceToArray(ResourceAbstract $resource): array
     {
+        /** @var Manager $fractal */
         $fractal = $this->getContainer()->get('fractal');
 
         return $fractal->createData($resource)->toArray();
