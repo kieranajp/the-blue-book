@@ -27,6 +27,8 @@ services:
   postgres:
 #    image: postgres:10-alpine
     build: ./docker/postgres
+    volumes:
+    - ./docker/postgres:/app
     ports:
     - "5489:5432"
     environment:

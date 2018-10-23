@@ -15,6 +15,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     CREATE TABLE units (
         uuid uuid NOT NULL DEFAULT uuid_generate_v4(),
         name varchar(40) NOT NULL,
+        abbreviation varchar(10) NOT NULL,
         created_at timestamp with time zone NOT NULL DEFAULT now(),
         updated_at timestamp with time zone NOT NULL DEFAULT now(),
         PRIMARY KEY (uuid)
@@ -33,8 +34,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
         name varchar(40) NOT NULL,
         description varchar(1024) NOT NULL,
         timing interval hour to minute NOT NULL,
-        serving_size smallint NOT NULL,
-        equipment_id uuid REFERENCES equipment(uuid),
+        serving_size smallint NOT NULL,        
         created_at timestamp with time zone NOT NULL DEFAULT now(),
         updated_at timestamp with time zone NOT NULL DEFAULT now(),
         PRIMARY KEY (uuid)
@@ -61,7 +61,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
     CREATE TABLE steps (
         uuid uuid NOT NULL DEFAULT uuid_generate_v4(),
-        name varchar(40) NOT NULL,
+        index smallint NOT NULL,
         instruction varchar(1024) NOT NULL,
         recipe_id uuid REFERENCES recipes(uuid) NOT NULL, 
         created_at timestamp with time zone NOT NULL DEFAULT now(),
