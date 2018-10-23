@@ -9,6 +9,9 @@ use Ramsey\Uuid\Uuid;
 
 class IngredientsHydrator implements HydratorInterface
 {
+    /**
+     * @inheritdoc
+     */
     public function hydrate(array $ingredient): Ingredient
     {
         return new Ingredient(

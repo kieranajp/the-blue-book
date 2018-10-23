@@ -14,7 +14,18 @@ use Ds\Vector;
 
 interface IngredientsRepositoryInterface
 {
+    /**
+     * Find all Ingredients.
+     *
+     * @return Vector
+     */
     public function all(): Vector;
 
+    /**
+     * Find an Ingredient by its ID.
+     *
+     * @param IngredientIdInterface $ingredientId
+     * @return Ingredient
+     */
     public function find(IngredientIdInterface $ingredientId): Ingredient;
 }

@@ -7,6 +7,12 @@ use League\Fractal\TransformerAbstract;
 
 class IngredientsTransformer extends TransformerAbstract
 {
+    /**
+     * Serialise an Ingredient.
+     *
+     * @param Ingredient $ingredient
+     * @return array
+     */
     public function transform(Ingredient $ingredient): array
     {
         return [
