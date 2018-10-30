@@ -9,7 +9,7 @@ use League\Fractal\Resource\ResourceInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
-class IndexIngredientsController implements LoggerAwareInterface
+class IndexIngredientsController
 {
     /**
      * @var IngredientsTransformer
@@ -20,11 +20,6 @@ class IndexIngredientsController implements LoggerAwareInterface
      * @var IngredientsRepositoryInterface
      */
     private $ingredientsRepository;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
 
     /**
      * IndexIngredientsController constructor.
@@ -43,16 +38,7 @@ class IndexIngredientsController implements LoggerAwareInterface
      */
     public function __invoke(): ResourceInterface
     {
-        $this->logger->debug('Called this method...');
         $ingredients = $this->ingredientsRepository->all();
         return new Collection($ingredients, $this->transformer);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setLogger(LoggerInterface $logger): void
-    {
-        $this->logger = $logger;
     }
 }
