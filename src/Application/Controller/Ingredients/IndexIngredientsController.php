@@ -5,8 +5,11 @@ namespace BlueBook\Application\Controller\Ingredients;
 use BlueBook\Application\Transformer\IngredientsTransformer;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\ResourceInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
-class IndexIngredientsController
+class IndexIngredientsController implements LoggerAwareInterface
 {
     /**
      * @var IngredientsTransformer
@@ -17,6 +20,11 @@ class IndexIngredientsController
      * @var IngredientsRepositoryInterface
      */
     private $ingredientsRepository;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * IndexIngredientsController constructor.
@@ -33,9 +41,18 @@ class IndexIngredientsController
     /**
      * @return Collection
      */
-    public function __invoke()
+    public function __invoke(): ResourceInterface
     {
+        $this->logger->debug('Called this method...');
         $ingredients = $this->ingredientsRepository->all();
         return new Collection($ingredients, $this->transformer);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 }

@@ -6,7 +6,11 @@ use BlueBook\Infrastructure\Database\PostgresHealthCheck;
 use Gentux\Healthz\Healthz;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Fractal\Manager;
+use Monolog\Formatter\LogstashFormatter;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerAwareInterface;
 use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 
@@ -18,6 +22,7 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'emitter',
         'fractal',
+        Logger::class,
         ServerRequestInterface::class,
         Healthz::class,
     ];
@@ -39,5 +44,17 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
 
         $container->add(Healthz::class)
             ->addMethodCall('push', [PostgresHealthCheck::class]);
+
+        $container->add(StreamHandler::class, function (): StreamHandler {
+            return (new StreamHandler(getenv('LOG_STREAM')))
+                ->setFormatter(new LogstashFormatter(getenv('APP_NAME')));
+        });
+
+        $container->add(Logger::class)
+            ->addArgument(getenv('APP_NAME'))
+            ->addMethodCall('pushHandler', [ StreamHandler::class ]);
+
+        $container->inflector(LoggerAwareInterface::class)
+            ->invokeMethod('setLogger', [ Logger::class ]);
     }
 }
