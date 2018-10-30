@@ -38,11 +38,23 @@ class Router
         $this->router->setStrategy($strategy);
     }
 
+    /**
+     * Match up routes and controller actions.
+     *
+     * @param string $method
+     * @param string $path
+     * @param string $handler
+     */
     public function map(string $method, string $path, string $handler): void
     {
         $this->router->map($method, $path, $handler);
     }
 
+    /**
+     * Map an incoming request to a route and dispatch it.
+     *
+     * @return ResponseInterface
+     */
     public function dispatch(): ResponseInterface
     {
         $request = $this->container->get(ServerRequestInterface::class);

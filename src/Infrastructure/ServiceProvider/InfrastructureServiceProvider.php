@@ -2,6 +2,8 @@
 
 namespace BlueBook\Infrastructure\ServiceProvider;
 
+use BlueBook\Infrastructure\Database\PostgresHealthCheck;
+use Gentux\Healthz\Healthz;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Fractal\Manager;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,6 +19,7 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         'emitter',
         'fractal',
         ServerRequestInterface::class,
+        Healthz::class,
     ];
 
     /**
@@ -33,5 +36,8 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
                 $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
             );
         });
+
+        $container->add(Healthz::class)
+            ->addMethodCall('push', [PostgresHealthCheck::class]);
     }
 }
