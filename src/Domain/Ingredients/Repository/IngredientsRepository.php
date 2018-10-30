@@ -4,7 +4,7 @@ namespace BlueBook\Domain\Ingredients\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
-use BlueBook\Infrastructure\Hydrator\HydratorInterface;
+use BlueBook\Infrastructure\Database\HydratorInterface;
 use Ds\Vector;
 
 class IngredientsRepository implements IngredientsRepositoryInterface

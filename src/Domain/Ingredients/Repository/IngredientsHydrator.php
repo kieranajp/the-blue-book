@@ -4,7 +4,7 @@ namespace BlueBook\Domain\Ingredients\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientId;
-use BlueBook\Infrastructure\Hydrator\HydratorInterface;
+use BlueBook\Infrastructure\Database\HydratorInterface;
 use Ramsey\Uuid\Uuid;
 
 class IngredientsHydrator implements HydratorInterface
