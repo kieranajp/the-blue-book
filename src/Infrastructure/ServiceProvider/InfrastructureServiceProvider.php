@@ -13,6 +13,7 @@ use Monolog\Logger;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Stopwatch\Stopwatch;
 use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
 
@@ -24,6 +25,7 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
     protected $provides = [
         'emitter',
         'fractal',
+        Stopwatch::class,
         LoggerInterface::class,
         LoggerMiddleware::class,
         LoggerAwareInterface::class,
@@ -54,12 +56,15 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
                 ->setFormatter(new LogstashFormatter(getenv('APP_NAME')));
         });
 
+        $container->add(Stopwatch::class);
+
         $container->add(LoggerInterface::class, Logger::class)
             ->addArgument(getenv('APP_NAME'))
             ->addMethodCall('pushHandler', [ StreamHandler::class ]);
 
         $container->add(LoggerMiddleware::class)
-            ->addArgument(LoggerInterface::class);
+            ->addArgument(LoggerInterface::class)
+            ->addArgument(Stopwatch::class);
 
         $container->inflector(LoggerAwareInterface::class)
             ->invokeMethod('setLogger', [ LoggerInterface::class ]);

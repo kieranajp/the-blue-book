@@ -8,6 +8,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 class LoggerMiddleware implements MiddlewareInterface
 {
@@ -16,9 +17,15 @@ class LoggerMiddleware implements MiddlewareInterface
      */
     private $logger;
 
-    public function __construct(LoggerInterface $logger)
+    /**
+     * @var Stopwatch
+     */
+    private $stopwatch;
+
+    public function __construct(LoggerInterface $logger, Stopwatch $stopwatch)
     {
         $this->logger = $logger;
+        $this->stopwatch = $stopwatch;
     }
 
     /**
@@ -31,6 +38,26 @@ class LoggerMiddleware implements MiddlewareInterface
             'path' => (string) $request->getUri(),
         ]);
 
-        return $handler->handle($request);
+        if ($this->isDebug()) {
+            $this->stopwatch->start('dispatch');
+        }
+
+        $response = $handler->handle($request);
+
+        if ($this->isDebug()) {
+            $time = $this->stopwatch->stop('dispatch');
+            $this->logger->debug('Finished dispatching controller action', [
+                'method' => $request->getMethod(),
+                'path' => (string) $request->getUri(),
+                'duration' => $time->getDuration(),
+            ]);
+        }
+
+        return $response;
+    }
+
+    private function isDebug()
+    {
+        return strtolower(getenv('LOG_LEVEL')) === 'debug';
     }
 }
