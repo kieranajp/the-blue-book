@@ -8,6 +8,7 @@ use Gentux\Healthz\Healthz;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Fractal\Manager;
 use Monolog\Formatter\LogstashFormatter;
+use Monolog\Handler\AbstractHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Http\Message\ServerRequestInterface;
@@ -51,10 +52,10 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         $container->add(Healthz::class)
             ->addMethodCall('push', [PostgresHealthCheck::class]);
 
-        $container->add(StreamHandler::class, function (): StreamHandler {
-            return (new StreamHandler(getenv('LOG_STREAM')))
-                ->setFormatter(new LogstashFormatter(getenv('APP_NAME')));
-        });
+        $container->add(StreamHandler::class)
+            ->addArgument(getenv('LOG_STREAM'))
+            ->addMethodCall('setFormatter', [ new LogstashFormatter(getenv('APP_NAME')) ])
+            ->addMethodCall('setLevel', [ getenv('LOG_LEVEL') ]);
 
         $container->add(Stopwatch::class);
 
