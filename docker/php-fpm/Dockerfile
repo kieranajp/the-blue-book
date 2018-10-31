@@ -49,3 +49,7 @@ RUN set -ex \
     && sed -i -e "s/;request_terminate_timeout\s*=[^\n]*/request_terminate_timeout = 300/g" /usr/local/etc/php-fpm.conf \
     && php-fpm --test
 
+ENV LOG_STREAM="/tmp/stdout"
+RUN mkfifo $LOG_STREAM && chmod 777 $LOG_STREAM
+
+CMD ["/bin/sh", "-c", "php-fpm -D | tail -f $LOG_STREAM"]

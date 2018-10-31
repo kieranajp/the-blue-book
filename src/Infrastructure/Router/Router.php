@@ -2,9 +2,11 @@
 
 namespace BlueBook\Infrastructure\Router;
 
+use BlueBook\Infrastructure\Router\Middleware\LoggerMiddleware;
 use Http\Factory\Diactoros\ResponseFactory;
 use League\Container\Container;
 use League\Route\Router as LeagueRouter;
+use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -36,6 +38,7 @@ class Router
 
         $this->router = new LeagueRouter();
         $this->router->setStrategy($strategy);
+        $this->router->middleware($container->get(LoggerMiddleware::class));
     }
 
     /**
