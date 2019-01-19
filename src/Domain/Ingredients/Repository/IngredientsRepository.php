@@ -6,6 +6,8 @@ use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
 use BlueBook\Infrastructure\Database\HydratorInterface;
 use Ds\Vector;
+use PDOException;
+use Psr\Log\LoggerInterface;
 
 class IngredientsRepository implements IngredientsRepositoryInterface
 {
@@ -20,15 +22,22 @@ class IngredientsRepository implements IngredientsRepositoryInterface
     private $hydrator;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * IngredientsRepository constructor.
      *
      * @param \PDO              $connection
      * @param HydratorInterface $hydrator
+     * @param LoggerInterface   $logger
      */
-    public function __construct(\PDO $connection, HydratorInterface $hydrator)
+    public function __construct(\PDO $connection, HydratorInterface $hydrator, LoggerInterface $logger)
     {
         $this->connection = $connection;
         $this->hydrator = $hydrator;
+        $this->logger = $logger;
     }
 
     /**
@@ -66,5 +75,33 @@ class IngredientsRepository implements IngredientsRepositoryInterface
         $row = $stmt->fetch();
 
         return $this->hydrator->hydrate($row);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function save(Ingredient $ingredient): bool
+    {
+        $this->connection->beginTransaction();
+        $stmt = $this->connection->prepare(
+            'INSERT INTO ingredients VALUES (:id, :name);'
+        );
+
+        try {
+            $stmt->execute([
+                ':id'   => (string) $ingredient->getIngredientId(),
+                ':name' => $ingredient->getName(),
+            ]);
+        } catch (PDOException $e) {
+            $this->connection->rollBack();
+            $this->logger->error('Error saving Ingredient', [
+                'ingredient' => $ingredient->getName(),
+                'error' => $e->getMessage(),
+            ]);
+
+            return false;
+        }
+
+        return $this->connection->commit();
     }
 }

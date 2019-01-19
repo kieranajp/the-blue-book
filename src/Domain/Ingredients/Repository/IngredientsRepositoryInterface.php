@@ -28,4 +28,12 @@ interface IngredientsRepositoryInterface
      * @return Ingredient
      */
     public function find(IngredientIdInterface $ingredientId): Ingredient;
+
+    /**
+     * Persist an Ingredient entity.
+     *
+     * @param Ingredient $ingredient
+     * @return bool
+     */
+    public function save(Ingredient $ingredient): bool;
 }

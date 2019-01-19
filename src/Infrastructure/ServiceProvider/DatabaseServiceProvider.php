@@ -9,6 +9,7 @@ use BlueBook\Infrastructure\Database\PostgresHealthCheck;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use PDO;
+use Psr\Log\LoggerInterface;
 
 class DatabaseServiceProvider extends AbstractServiceProvider
 {
@@ -50,6 +51,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
 
         $container->add(IngredientsRepositoryInterface::class, IngredientsRepository::class)
             ->addArgument(PDO::class)
-            ->addArgument(IngredientsHydrator::class);
+            ->addArgument(IngredientsHydrator::class)
+            ->addArgument(LoggerInterface::class);
     }
 }
