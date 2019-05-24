@@ -7,7 +7,7 @@
         "ext-pdo": "*",
         "league/route": "^4.2",
         "league/container": "^3.2",
-        "league/fractal": "^0.17.0",
+        "league/fractal": "^0.18.0",
         "php-ds/php-ds": "^1.2",
         "http-interop/http-factory-diactoros": "^1.0",
         "msgphp/domain": "^0.7.0",
