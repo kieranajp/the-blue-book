@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f573b173e44e05f7ab9a4df7f5ac293",
+    "content-hash": "0ecde728f7feb324074cd8b73d50d732",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1094,42 +1094,34 @@
         },
         {
             "name": "msgphp/domain",
-            "version": "v0.7.0",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msgphp/domain.git",
-                "reference": "700e3a1a2a6dcb4c3f620209281f3748c01959dd"
+                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msgphp/domain/zipball/700e3a1a2a6dcb4c3f620209281f3748c01959dd",
-                "reference": "700e3a1a2a6dcb4c3f620209281f3748c01959dd",
+                "url": "https://api.github.com/repos/msgphp/domain/zipball/43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
+                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.0"
             },
+            "conflict": {
+                "symfony/messenger": "<4.2"
+            },
             "require-dev": {
-                "api-platform/core": "^2.2",
-                "doctrine/doctrine-bundle": "^1.8",
                 "doctrine/orm": "^2.6",
-                "elasticsearch/elasticsearch": "^6.0",
-                "psr/container": "^1.0",
                 "ramsey/uuid": "^3.7",
-                "ramsey/uuid-doctrine": "^1.4",
-                "simple-bus/message-bus": "^3.0",
-                "symfony/config": "^3.4|^4.0",
-                "symfony/dependency-injection": "^3.4.16|^4.0.16|^4.1.5",
-                "symfony/http-kernel": "^3.4|^4.0",
-                "symfony/messenger": "^4.1",
-                "symfony/phpunit-bridge": "^3.4.9|^4.0.9",
-                "symfony/property-access": "^3.4|^4.0",
-                "symfony/var-dumper": "^3.4|^4.0"
+                "symfony/messenger": "^4.2",
+                "symfony/var-exporter": "^4.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7-dev"
+                    "dev-master": "0.10-dev"
                 }
             },
             "autoload": {
@@ -1150,7 +1142,7 @@
                     "email": "franssen.roland@gmail.com"
                 }
             ],
-            "description": "A base domain layer to rapidly built other domain layers",
+            "description": "A dependency-free package to help building a business domain layer",
             "keywords": [
                 "command query responsibility segregation",
                 "cqrs",
@@ -1160,9 +1152,11 @@
                 "entity",
                 "es",
                 "event sourcing",
+                "orm",
+                "repository",
                 "rich domain model"
             ],
-            "time": "2018-10-04T10:23:16+00:00"
+            "time": "2019-03-27T15:36:57+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
