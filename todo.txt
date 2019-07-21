@@ -1,5 +1,5 @@
 - OpenAPI contract testing
-- Add pagination
+- Add pagination (maybe switch to aura.sql for this)
 - Add PUT ingredients endpoint
 - Create Recipe entity
 - Content negotiation
