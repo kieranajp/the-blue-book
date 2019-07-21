@@ -16,7 +16,7 @@ class IngredientsTransformer extends TransformerAbstract
     public function transform(Ingredient $ingredient): array
     {
         return [
-            'id' => $ingredient->getIngredientId(),
+            'id' => (string) $ingredient->getIngredientId(),
             'name' => $ingredient->getName(),
         ];
     }
