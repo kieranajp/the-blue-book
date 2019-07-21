@@ -2,7 +2,9 @@
 
 namespace BlueBook\Domain\Ingredients;
 
-interface IngredientIdInterface
+use MsgPhp\Domain\DomainId;
+
+interface IngredientIdInterface extends DomainId
 {
 
 }

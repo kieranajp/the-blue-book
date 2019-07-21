@@ -2,9 +2,9 @@
 
 namespace BlueBook\Domain\Ingredients;
 
-use MsgPhp\Domain\Infra\Uuid\DomainId;
+use MsgPhp\Domain\Infrastructure\Uuid\DomainIdTrait;
 
-final class IngredientId extends DomainId implements IngredientIdInterface
+final class IngredientId implements IngredientIdInterface
 {
-
+    use DomainIdTrait;
 }
