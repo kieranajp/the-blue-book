@@ -8,7 +8,6 @@ use Gentux\Healthz\Healthz;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Fractal\Manager;
 use Monolog\Formatter\LogstashFormatter;
-use Monolog\Handler\AbstractHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Http\Message\ServerRequestInterface;
@@ -66,10 +65,6 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         $container->add(LoggerInterface::class, Logger::class)
             ->addArgument(getenv('APP_NAME'))
             ->addMethodCall('pushHandler', [ StreamHandler::class ]);
-
-        $container->add(LoggerMiddleware::class)
-            ->addArgument(LoggerInterface::class)
-            ->addArgument(Stopwatch::class);
 
         $container->inflector(LoggerAwareInterface::class)
             ->invokeMethod('setLogger', [ LoggerInterface::class ]);
