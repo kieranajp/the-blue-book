@@ -1,3 +1,5 @@
+.idea/
 coverage/
 coverage.json
+coverage.xml
 /vendor/

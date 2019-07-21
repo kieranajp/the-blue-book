@@ -21,7 +21,7 @@ class FractalStrategy extends JsonStrategy implements StrategyInterface
             $body = json_encode($this->transformResourceToArray($response));
             $response = $this->responseFactory->createResponse(200);
             $response->getBody()->write($body);
-        } else if ((! $response instanceof ResponseInterface) && $this->isJsonEncodable($response)) {
+        } elseif ((! $response instanceof ResponseInterface) && $this->isJsonEncodable($response)) {
             $body = json_encode($response);
             $response = $this->responseFactory->createResponse(200);
             $response->getBody()->write($body);

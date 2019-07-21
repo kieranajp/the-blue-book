@@ -45,7 +45,11 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         $container->add('fractal', Manager::class);
         $container->add(ServerRequestInterface::class, function (): ServerRequestInterface {
             return ServerRequestFactory::fromGlobals(
-                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+                $_SERVER,
+                $_GET,
+                $_POST,
+                $_COOKIE,
+                $_FILES
             );
         });
 

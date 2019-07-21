@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Domain\Ingredients\Repository;
+namespace BlueBook\Infrastructure\Database\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
+use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use BlueBook\Infrastructure\Database\HydratorInterface;
 use Ds\Vector;
 use PDOException;

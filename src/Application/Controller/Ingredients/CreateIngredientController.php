@@ -28,8 +28,10 @@ class CreateIngredientController
      * @param IngredientsTransformer         $transformer
      * @param IngredientsRepositoryInterface $ingredientsRepository
      */
-    public function __construct(IngredientsTransformer $transformer, IngredientsRepositoryInterface $ingredientsRepository)
-    {
+    public function __construct(
+        IngredientsTransformer $transformer,
+        IngredientsRepositoryInterface $ingredientsRepository
+    ) {
         $this->transformer = $transformer;
         $this->ingredientsRepository = $ingredientsRepository;
     }

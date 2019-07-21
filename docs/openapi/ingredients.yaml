@@ -1,0 +1,61 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: The Blue Book
+  description: A recipe book
+  license:
+    name: MIT
+  contact:
+    name: Kieran Patel
+    email: me@kieranajp.co.uk
+servers:
+  - url: http://localhost:8989
+paths:
+  /ingredients:
+    get:
+      description: List all ingredients
+      operationId: ingredients.index
+      tags:
+        - ingredients
+      responses:
+        '200':
+          description: A paged array of Ingredients
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredients"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Ingredient:
+      description: Representation of an ingredient that will be part of a recipe
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Ingredients:
+      description: A collection of Ingredient entities
+      type: array
+      items:
+        $ref: "#/components/schemas/Ingredient"
+    Error:
+      description: Standardised Error entity
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

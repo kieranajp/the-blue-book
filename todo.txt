@@ -1,0 +1,6 @@
+- OpenAPI docs & testing
+- Add pagination
+- Add PUT ingredients endpoint
+- Create Recipe entity
+- Content negotiation
+- API versioning

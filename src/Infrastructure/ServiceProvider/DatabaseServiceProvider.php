@@ -3,8 +3,8 @@
 namespace BlueBook\Infrastructure\ServiceProvider;
 
 use BlueBook\Domain\Ingredients\Repository\IngredientsHydrator;
-use BlueBook\Domain\Ingredients\Repository\IngredientsRepository;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
+use BlueBook\Infrastructure\Database\Repository\IngredientsRepository;
 use BlueBook\Infrastructure\Database\PostgresHealthCheck;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;

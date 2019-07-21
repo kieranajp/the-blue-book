@@ -9,7 +9,7 @@ use BlueBook\Infrastructure\Router\Router;
 /**
  * @param Router $router
  */
-return function(Router $router): void {
+return function (Router $router): void {
     $router->map('GET', '/', WelcomeController::class);
 
     $router->map('GET', '/status', HealthCheckController::class);
