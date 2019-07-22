@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7b4aea0d2d3b9052d9a036863ba9583",
+    "content-hash": "88c6eb079b379ffa5c78b5149e6d26df",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1105,20 +1105,20 @@
         },
         {
             "name": "msgphp/domain",
-            "version": "v0.10.0",
+            "version": "v0.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msgphp/domain.git",
-                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7"
+                "reference": "2617bf4d5c9caba24794dc63209d565f44cdda27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msgphp/domain/zipball/43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
-                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
+                "url": "https://api.github.com/repos/msgphp/domain/zipball/2617bf4d5c9caba24794dc63209d565f44cdda27",
+                "reference": "2617bf4d5c9caba24794dc63209d565f44cdda27",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.0"
+                "php": "^7.2"
             },
             "conflict": {
                 "symfony/messenger": "<4.2"
@@ -1132,7 +1132,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.10-dev"
+                    "dev-master": "0.12-dev"
                 }
             },
             "autoload": {
@@ -1167,7 +1167,7 @@
                 "repository",
                 "rich domain model"
             ],
-            "time": "2019-03-27T15:36:57+00:00"
+            "time": "2019-07-21T17:07:29+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
