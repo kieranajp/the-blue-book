@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7b4aea0d2d3b9052d9a036863ba9583",
+    "content-hash": "4c2d6e0dd4d76ce68a7eef52eca9df2c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -871,9 +871,9 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
+                    "role": "Developer",
                     "email": "philipobenito@gmail.com",
-                    "homepage": "http://www.philipobenito.com",
-                    "role": "Developer"
+                    "homepage": "http://www.philipobenito.com"
                 }
             ],
             "description": "A fast and intuitive dependency injection container.",
@@ -938,9 +938,9 @@
             "authors": [
                 {
                     "name": "Phil Sturgeon",
+                    "role": "Developer",
                     "email": "me@philsturgeon.uk",
-                    "homepage": "http://philsturgeon.uk/",
-                    "role": "Developer"
+                    "homepage": "http://philsturgeon.uk/"
                 }
             ],
             "description": "Handle the output of complex data structures ready for API output.",
@@ -1007,8 +1007,8 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
-                    "email": "philipobenito@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "philipobenito@gmail.com"
                 }
             ],
             "description": "Fast routing and dispatch component including PSR-15 middleware, built on top of FastRoute.",
@@ -1105,34 +1105,34 @@
         },
         {
             "name": "msgphp/domain",
-            "version": "v0.10.0",
+            "version": "v0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msgphp/domain.git",
-                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7"
+                "reference": "0a9b70f148e98ee1c68ec1145e15237412128cbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msgphp/domain/zipball/43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
-                "reference": "43d16e56efb8a3d6fcb90e0ea6b86d5aaccd3fa7",
+                "url": "https://api.github.com/repos/msgphp/domain/zipball/0a9b70f148e98ee1c68ec1145e15237412128cbc",
+                "reference": "0a9b70f148e98ee1c68ec1145e15237412128cbc",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.0"
+                "php": "^7.2"
             },
             "conflict": {
-                "symfony/messenger": "<4.2"
+                "symfony/messenger": "<4.3"
             },
             "require-dev": {
                 "doctrine/orm": "^2.6",
                 "ramsey/uuid": "^3.7",
-                "symfony/messenger": "^4.2",
+                "symfony/messenger": "^4.3",
                 "symfony/var-exporter": "^4.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.10-dev"
+                    "dev-master": "0.13-dev"
                 }
             },
             "autoload": {
@@ -1167,7 +1167,7 @@
                 "repository",
                 "rich domain model"
             ],
-            "time": "2019-03-27T15:36:57+00:00"
+            "time": "2019-08-03T08:10:31+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -2653,19 +2653,19 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
+                    "role": "Lead Developer",
                     "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "homepage": "http://fabien.potencier.org"
                 },
                 {
                     "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
+                    "role": "Project Founder",
+                    "email": "armin.ronacher@active-4.com"
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://twig.symfony.com/contributors",
-                    "role": "Contributors"
+                    "role": "Contributors",
+                    "homepage": "https://twig.symfony.com/contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
