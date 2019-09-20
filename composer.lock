@@ -871,9 +871,9 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
-                    "role": "Developer",
                     "email": "philipobenito@gmail.com",
-                    "homepage": "http://www.philipobenito.com"
+                    "homepage": "http://www.philipobenito.com",
+                    "role": "Developer"
                 }
             ],
             "description": "A fast and intuitive dependency injection container.",
@@ -938,9 +938,9 @@
             "authors": [
                 {
                     "name": "Phil Sturgeon",
-                    "role": "Developer",
                     "email": "me@philsturgeon.uk",
-                    "homepage": "http://philsturgeon.uk/"
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
                 }
             ],
             "description": "Handle the output of complex data structures ready for API output.",
@@ -1007,8 +1007,8 @@
             "authors": [
                 {
                     "name": "Phil Bennett",
-                    "role": "Developer",
-                    "email": "philipobenito@gmail.com"
+                    "email": "philipobenito@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Fast routing and dispatch component including PSR-15 middleware, built on top of FastRoute.",
@@ -2653,19 +2653,19 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "role": "Lead Developer",
                     "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org"
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Armin Ronacher",
-                    "role": "Project Founder",
-                    "email": "armin.ronacher@active-4.com"
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
                 },
                 {
                     "name": "Twig Team",
-                    "role": "Contributors",
-                    "homepage": "https://twig.symfony.com/contributors"
+                    "homepage": "https://twig.symfony.com/contributors",
+                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -2743,23 +2743,23 @@
     "packages-dev": [
         {
             "name": "kahlan/kahlan",
-            "version": "4.6.3",
+            "version": "4.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kahlan/kahlan.git",
-                "reference": "b0341a59cefd2697f6e104bbcf045ee36a189ea2"
+                "reference": "c3fc05f42adc843b790fb7c788fd60e212d3ceb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/b0341a59cefd2697f6e104bbcf045ee36a189ea2",
-                "reference": "b0341a59cefd2697f6e104bbcf045ee36a189ea2",
+                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/c3fc05f42adc843b790fb7c788fd60e212d3ceb0",
+                "reference": "c3fc05f42adc843b790fb7c788fd60e212d3ceb0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "^3.3"
+                "squizlabs/php_codesniffer": "^3.4"
             },
             "bin": [
                 "bin/kahlan"
@@ -2793,7 +2793,7 @@
                 "testing",
                 "unit test"
             ],
-            "time": "2019-04-18T14:16:23+00:00"
+            "time": "2019-09-19T12:52:53+00:00"
         },
         {
             "name": "larapack/dd",
