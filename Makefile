@@ -5,7 +5,7 @@ lint: lint.php lint.phpcs lint.openapi
 test: test.coverage
 
 test.coverage:
-	@phpdbg -qrr vendor/bin/kahlan --coverage=coverage.istanbul
+	@phpdbg -qrr vendor/bin/kahlan --istanbul=coverage.json
 
 test.quick:
 	@vendor/bin/kahlan

@@ -4,8 +4,11 @@ namespace BlueBook\Infrastructure\ServiceProvider;
 
 use BlueBook\Domain\Ingredients\Repository\IngredientsHydrator;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
-use BlueBook\Infrastructure\Database\Repository\IngredientsRepository;
+use BlueBook\Domain\Recipes\Repository\RecipesHydrator;
+use BlueBook\Domain\Recipes\Repository\RecipesRepositoryInterface;
+use BlueBook\Infrastructure\Repository\IngredientsRepository;
 use BlueBook\Infrastructure\Database\PostgresHealthCheck;
+use BlueBook\Infrastructure\Repository\RecipesRepository;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use PDO;
@@ -20,6 +23,8 @@ class DatabaseServiceProvider extends AbstractServiceProvider
         PostgresHealthCheck::class,
         IngredientsHydrator::class,
         IngredientsRepositoryInterface::class,
+        RecipesHydrator::class,
+        RecipesRepositoryInterface::class,
     ];
 
     /**
@@ -48,10 +53,15 @@ class DatabaseServiceProvider extends AbstractServiceProvider
             ->addArgument($dsn);
 
         $container->add(IngredientsHydrator::class);
-
         $container->add(IngredientsRepositoryInterface::class, IngredientsRepository::class)
             ->addArgument(PDO::class)
             ->addArgument(IngredientsHydrator::class)
+            ->addArgument(LoggerInterface::class);
+
+        $container->add(RecipesHydrator::class);
+        $container->add(RecipesRepositoryInterface::class, RecipesRepository::class)
+            ->addArgument(PDO::class)
+            ->addArgument(RecipesHydrator::class)
             ->addArgument(LoggerInterface::class);
     }
 }

@@ -31,7 +31,8 @@ describe(Router::class, function () use ($stubMiddleware) {
 
         allow(Container::class)
             ->toReceive('get')
-            ->andReturn($stubMiddleware);
+            ->with('middleware')
+            ->andReturn([$stubMiddleware]);
 
         expect(
             (new Router(new Container))
@@ -51,8 +52,8 @@ describe(Router::class, function () use ($stubMiddleware) {
             ->with($stubMiddleware);
 
         allow(Container::class)->toReceive('get')
-            ->with(LoggerMiddleware::class)
-            ->andReturn($stubMiddleware);
+            ->with('middleware')
+            ->andReturn([$stubMiddleware]);
 
         allow(Container::class)->toReceive('get')
             ->with(ServerRequestInterface::class)

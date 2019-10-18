@@ -37,7 +37,7 @@ class Router
 
         $this->router = new LeagueRouter();
         $this->router->setStrategy($strategy);
-        $this->router->middleware($container->get(LoggerMiddleware::class));
+        $this->router->middlewares($container->get('middleware'));
     }
 
     /**

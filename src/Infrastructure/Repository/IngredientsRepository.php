@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Infrastructure\Database\Repository;
+namespace BlueBook\Infrastructure\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientIdInterface;
