@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c2d6e0dd4d76ce68a7eef52eca9df2c",
+    "content-hash": "b5f59f62f7f49c9985d36fdc5b26952d",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1105,16 +1105,16 @@
         },
         {
             "name": "msgphp/domain",
-            "version": "v0.13.0",
+            "version": "v0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/msgphp/domain.git",
-                "reference": "0a9b70f148e98ee1c68ec1145e15237412128cbc"
+                "reference": "4c02ab43324b9aac2db7c87f67125640ea7ebdfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/msgphp/domain/zipball/0a9b70f148e98ee1c68ec1145e15237412128cbc",
-                "reference": "0a9b70f148e98ee1c68ec1145e15237412128cbc",
+                "url": "https://api.github.com/repos/msgphp/domain/zipball/4c02ab43324b9aac2db7c87f67125640ea7ebdfa",
+                "reference": "4c02ab43324b9aac2db7c87f67125640ea7ebdfa",
                 "shasum": ""
             },
             "require": {
@@ -1132,7 +1132,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.13-dev"
+                    "dev-master": "0.14-dev"
                 }
             },
             "autoload": {
@@ -1167,7 +1167,7 @@
                 "repository",
                 "rich domain model"
             ],
-            "time": "2019-08-03T08:10:31+00:00"
+            "time": "2019-12-15T09:35:10+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",

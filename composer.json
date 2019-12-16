@@ -10,7 +10,7 @@
         "league/fractal": "^0.18.0",
         "php-ds/php-ds": "^1.2",
         "http-interop/http-factory-diactoros": "^1.0",
-        "msgphp/domain": "^0.13.0",
+        "msgphp/domain": "^0.14.0",
         "ramsey/uuid": "^3.8",
         "generationtux/healthz": "^1.1",
         "monolog/monolog": "^1.23",
