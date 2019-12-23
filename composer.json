@@ -13,7 +13,7 @@
         "msgphp/domain": "^0.13.0",
         "ramsey/uuid": "^3.8",
         "generationtux/healthz": "^1.1",
-        "monolog/monolog": "^1.23",
+        "monolog/monolog": "^2.0",
         "symfony/stopwatch": "^4.1"
     },
     "require-dev": {
