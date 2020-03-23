@@ -11,7 +11,7 @@
         "php-ds/php-ds": "^1.2",
         "http-interop/http-factory-diactoros": "^1.0",
         "msgphp/domain": "^0.13.0",
-        "ramsey/uuid": "^3.8",
+        "ramsey/uuid": "^4.0",
         "generationtux/healthz": "^1.1",
         "monolog/monolog": "^1.23",
         "symfony/stopwatch": "^4.1"
