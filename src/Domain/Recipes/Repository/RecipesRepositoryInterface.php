@@ -16,7 +16,7 @@ interface RecipesRepositoryInterface
     public function all(): Vector;
 
     /**
-     * Find an Ingredient by its ID.
+     * Find a Recipe by its ID.
      *
      * @param RecipeIdInterface $recipeId
      * @return Recipe

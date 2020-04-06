@@ -4,6 +4,7 @@ use BlueBook\Application\Controller\HealthCheck\HealthCheckController;
 use BlueBook\Application\Controller\Ingredients\CreateIngredientController;
 use BlueBook\Application\Controller\Ingredients\IndexIngredientsController;
 use BlueBook\Application\Controller\Recipes\IndexRecipesController;
+use BlueBook\Application\Controller\Recipes\ShowRecipeController;
 use BlueBook\Application\Controller\Welcome\WelcomeController;
 use BlueBook\Infrastructure\Router\Router;
 
@@ -19,4 +20,6 @@ return function (Router $router): void {
     $router->map('POST', '/ingredients', CreateIngredientController::class);
 
     $router->map('GET', '/recipes', IndexRecipesController::class);
+
+    $router->map('GET', '/recipe/{id:uuid}', ShowRecipeController::class);
 };

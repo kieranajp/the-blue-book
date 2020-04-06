@@ -69,7 +69,7 @@ class RecipesRepository implements RecipesRepositoryInterface
     public function find(RecipeIdInterface $recipeId): Recipe
     {
         $stmt = $this->connection->prepare(
-            'SELECT * FROM recipes WHERE uuid = :ingredientId LIMIT 1;'
+            'SELECT * FROM recipes WHERE uuid = :recipeId LIMIT 1;'
         );
 
         $stmt->execute([

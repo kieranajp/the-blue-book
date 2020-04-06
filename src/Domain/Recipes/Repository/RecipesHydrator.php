@@ -15,11 +15,16 @@ class RecipesHydrator implements HydratorInterface
      */
     public function hydrate(array $recipe): Recipe
     {
+
+        $times = explode(":", $recipe['timing']);
+        $hours = $times[0];
+        $minutes = $times[1];
+
         return new Recipe(
             new RecipeId(Uuid::fromString($recipe['uuid'])),
             $recipe['name'],
             $recipe['description'],
-            new DateInterval(sprintf('PT%sH%sM', $recipe['hours'], $recipe['minutes'])),
+            new DateInterval(sprintf('PT%sH%sM', $hours, $minutes)),
             (int) $recipe['serving_size']
         );
     }

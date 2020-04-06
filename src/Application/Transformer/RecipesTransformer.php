@@ -19,8 +19,9 @@ class RecipesTransformer extends TransformerAbstract
             'id' => (string) $recipe->getRecipeId(),
             'name' => $recipe->getName(),
             'description' => $recipe->getName(),
-            'timing' => $recipe->getTiming()->format('H:i'),
+            'timing' => $recipe->getTiming()->format('%H:%I:%S'),
             'serving_size' => $recipe->getServings(),
         ];
+
     }
 }
