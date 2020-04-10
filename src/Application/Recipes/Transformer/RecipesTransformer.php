@@ -26,7 +26,7 @@ class RecipesTransformer extends TransformerAbstract
 
     public function includeIngredients(Recipe $recipe): Collection
     {
-        dd($recipe);
+        return $this->collection($recipe->getIngredients(), new RecipeIngredientTransformer());
     }
 
     public function includeSteps(Recipe $recipe): Collection

@@ -20,7 +20,9 @@ class RecipesHydrator implements HydratorInterface
         $hours = $times[0];
         $minutes = $times[1];
 
-        $ingredients = $this->hydrateIngredients($recipe);
+        if ($recipe['ingredients']) {
+            $ingredients = $this->hydrateIngredients($recipe['ingredients']);
+        }
 
         return new Recipe(
             new RecipeId(Uuid::fromString($recipe['uuid'])),
@@ -28,55 +30,12 @@ class RecipesHydrator implements HydratorInterface
             $recipe['description'],
             new DateInterval(sprintf('PT%sH%sM', $hours, $minutes)),
             (int) $recipe['serving_size'],
-            [],
+            $ingredients ?? [],
         );
     }
 
-    public function resolveIngredients(array $records): array
+    public function hydrateIngredients(array $ingredients)
     {
-        $recipes = new Vector();
-
-        foreach ($records as $record) {
-            try {
-                $recipe = $recipes
-                    ->filter(fn(array $recipe): bool => (int) $record['id'] === (int) $recipe['id'])
-                    ->first();
-            } catch (UnderflowException $e) {
-                $recipe = $record;
-                $recipe['ingredients'][] = $this->extractIngredient($record);
-                $recipes->push($recipe);
-                continue;
-            }
-
-            $recipes = $recipes
-                ->filter(fn(array $recipe): bool => (int) $record['id'] !== (int) $recipe['id']);
-
-            $recipe['ingredients'][] = $this->extractIngredient($record);
-            $recipes->push($recipe);
-        }
-
-        return $recipes->toArray();
-    }
-
-    private function extractIngredient(array $record): array
-    {
-        $ingredientFields = [
-            'ingredient_name',
-            'quantity',
-            'unit_name',
-        ];
-
-        $ingredient = [];
-        foreach ($ingredientFields as $field) {
-            $ingredient[$field] = $record[$field];
-        }
-
-        return $ingredient;
-    }
-
-    public function hydrateIngredients(array $recipe)
-    {
-        dd($recipe);
-        return (new IngredientsHydrator())->hydrate($recipe);
+        return array_map(fn(array $ingredient) => (new RecipeIngredientHydrator())->hydrate($ingredient), $ingredients);
     }
 }
