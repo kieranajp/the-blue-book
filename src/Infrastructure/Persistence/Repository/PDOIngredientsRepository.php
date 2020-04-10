@@ -10,6 +10,9 @@ use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use Ds\Vector;
 use PDOException;
 use Psr\Log\LoggerInterface;
+use BlueBook\Infrastructure\Persistence\Queries\Ingredients\GetIngredients;
+use BlueBook\Infrastructure\Persistence\Queries\Ingredients\SaveIngredient;
+use BlueBook\Infrastructure\Persistence\Queries\Ingredients\GetIngredientById;
 
 class PDOIngredientsRepository implements IngredientsRepositoryInterface
 {
@@ -31,11 +34,7 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
      */
     public function all(): Vector
     {
-        $stmt = $this->connection->prepare(
-            'SELECT * FROM ingredients;'
-        );
-
-        $stmt->execute();
+        $stmt = (new GetIngredients($this->connection))->execute();
 
         $ingredients = new Vector();
         while ($row = $stmt->fetch()) {
@@ -50,17 +49,8 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
      */
     public function find(IngredientIdInterface $ingredientId): Ingredient
     {
-        $stmt = $this->connection->prepare(
-            'SELECT * FROM ingredients WHERE uuid = :ingredientId LIMIT 1;'
-        );
-
-        $stmt->execute([
-            ':ingredientId' => (string) $ingredientId,
-        ]);
-
-        $row = $stmt->fetch();
-
-        return $this->hydrator->hydrate($row);
+        $stmt = (new GetIngredientById($this->connection))->execute();
+        return $this->hydrator->hydrate($stmt->fetch());
     }
 
     /**
@@ -68,26 +58,6 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
      */
     public function save(Ingredient $ingredient): bool
     {
-        $this->connection->beginTransaction();
-        $stmt = $this->connection->prepare(
-            'INSERT INTO ingredients VALUES (:id, :name);'
-        );
-
-        try {
-            $stmt->execute([
-                ':id'   => (string) $ingredient->getIngredientId(),
-                ':name' => $ingredient->getName(),
-            ]);
-        } catch (PDOException $e) {
-            $this->connection->rollBack();
-            $this->logger->error('Error saving Ingredient', [
-                'ingredient' => $ingredient->getName(),
-                'error' => $e->getMessage(),
-            ]);
-
-            return false;
-        }
-
-        return $this->connection->commit();
+        return (new SaveIngredient($this->connection))->execute($ingredient);
     }
 }
