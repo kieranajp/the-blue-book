@@ -4,7 +4,7 @@ namespace BlueBook\Infrastructure\Persistence\Repository;
 
 use PDO;
 use BlueBook\Domain\Ingredients\Ingredient;
-use BlueBook\Domain\Ingredients\IngredientIdInterface;
+use BlueBook\Domain\Ingredients\IngredientId;
 use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use Ds\Vector;
@@ -47,7 +47,7 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function find(IngredientIdInterface $ingredientId): Ingredient
+    public function find(IngredientId $ingredientId): Ingredient
     {
         $stmt = (new GetIngredientById($this->connection))->execute();
         return $this->hydrator->hydrate($stmt->fetch());

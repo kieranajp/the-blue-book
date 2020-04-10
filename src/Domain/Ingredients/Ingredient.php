@@ -4,17 +4,17 @@ namespace BlueBook\Domain\Ingredients;
 
 class Ingredient
 {
-    private IngredientIdInterface $ingredientId;
+    private IngredientId $ingredientId;
 
     private string $name;
 
-    public function __construct(IngredientIdInterface $ingredientId, string $name)
+    public function __construct(IngredientId $ingredientId, string $name)
     {
         $this->ingredientId = $ingredientId;
         $this->name = $name;
     }
 
-    public function getIngredientId(): IngredientIdInterface
+    public function getIngredientId(): IngredientId
     {
         return $this->ingredientId;
     }

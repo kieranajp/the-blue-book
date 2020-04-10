@@ -1,16 +1,9 @@
 <?php declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: kieran
- * Date: 17/10/18
- * Time: 20:43
- */
-
 namespace BlueBook\Domain\Ingredients\Repository;
 
 use BlueBook\Domain\Ingredients\Ingredient;
-use BlueBook\Domain\Ingredients\IngredientIdInterface;
+use BlueBook\Domain\Ingredients\IngredientId;
 use Ds\Vector;
 
 interface IngredientsRepositoryInterface
@@ -25,10 +18,10 @@ interface IngredientsRepositoryInterface
     /**
      * Find an Ingredient by its ID.
      *
-     * @param IngredientIdInterface $ingredientId
+     * @param IngredientId $ingredientId
      * @return Ingredient
      */
-    public function find(IngredientIdInterface $ingredientId): Ingredient;
+    public function find(IngredientId $ingredientId): Ingredient;
 
     /**
      * Persist an Ingredient entity.

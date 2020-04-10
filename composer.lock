@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e870bd8e196a187c05ba4e9033187339",
+    "content-hash": "de0d3c2c0b1543b94f6cd4695007d11a",
     "packages": [
         {
             "name": "http-interop/http-factory-diactoros",
@@ -382,69 +382,6 @@
                 "psr-3"
             ],
             "time": "2020-02-19T14:44:17+00:00"
-        },
-        {
-            "name": "msgphp/domain",
-            "version": "v0.15.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/msgphp/domain.git",
-                "reference": "d247ef7786b55479863ad35915562fe6fd9661b1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/msgphp/domain/zipball/d247ef7786b55479863ad35915562fe6fd9661b1",
-                "reference": "d247ef7786b55479863ad35915562fe6fd9661b1",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "doctrine/orm": "^2.6",
-                "ramsey/uuid": "^3.7",
-                "symfony/messenger": "^4.4 || ^5.0",
-                "symfony/var-exporter": "^4.4 || ^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.15-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MsgPhp\\Domain\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Roland Franssen",
-                    "email": "franssen.roland@gmail.com"
-                }
-            ],
-            "description": "A dependency-free package to help building a business domain layer",
-            "keywords": [
-                "command query responsibility segregation",
-                "cqrs",
-                "ddd",
-                "domain model",
-                "domain-driven-design",
-                "entity",
-                "es",
-                "event sourcing",
-                "orm",
-                "repository",
-                "rich domain model"
-            ],
-            "time": "2020-03-08T14:38:20+00:00"
         },
         {
             "name": "nikic/fast-route",
