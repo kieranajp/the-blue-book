@@ -2,24 +2,26 @@
     "name": "kieranajp/the-blue-book",
     "type": "project",
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
         "ext-json": "*",
         "ext-pdo": "*",
-        "league/route": "^4.2",
-        "league/container": "^3.2",
+        "league/route": "^4.3",
+        "league/container": "^3.3",
         "league/fractal": "^0.18.0",
         "php-ds/php-ds": "^1.2",
         "http-interop/http-factory-diactoros": "^1.0",
-        "msgphp/domain": "^0.13.0",
+        "msgphp/domain": "^0.15.0",
         "ramsey/uuid": "^3.8",
-        "generationtux/healthz": "^1.1",
-        "monolog/monolog": "^1.23",
+        "kieranajp/healthz": "^0.0.1",
+        "monolog/monolog": "^2.0@dev",
         "symfony/stopwatch": "^4.1"
     },
     "require-dev": {
-        "kahlan/kahlan": "^4.3",
+        "kahlan/kahlan": "^4.7",
         "larapack/dd": "^1.1",
-        "squizlabs/php_codesniffer": "^3.4"
+        "squizlabs/php_codesniffer": "^3.5",
+        "vimeo/psalm": "^3.10",
+        "slevomat/coding-standard": "^6.2"
     },
     "autoload": {
         "psr-4": { "BlueBook\\": "src/" }

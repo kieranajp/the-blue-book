@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Application\Controller\Ingredients;
+namespace BlueBook\Application\Ingredients\Controller;
 
-use BlueBook\Application\Transformer\IngredientsTransformer;
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientId;
+use BlueBook\Application\Ingredients\Transformer\IngredientsTransformer;
 use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\ResourceInterface;
@@ -12,22 +12,10 @@ use Psr\Http\Message\RequestInterface;
 
 class CreateIngredientController
 {
-    /**
-     * @var IngredientsTransformer
-     */
-    private $transformer;
+    private IngredientsTransformer $transformer;
 
-    /**
-     * @var IngredientsRepositoryInterface
-     */
-    private $ingredientsRepository;
+    private IngredientsRepositoryInterface $ingredientsRepository;
 
-    /**
-     * CreateIngredientController constructor.
-     *
-     * @param IngredientsTransformer         $transformer
-     * @param IngredientsRepositoryInterface $ingredientsRepository
-     */
     public function __construct(
         IngredientsTransformer $transformer,
         IngredientsRepositoryInterface $ingredientsRepository

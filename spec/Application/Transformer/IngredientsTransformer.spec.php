@@ -14,5 +14,4 @@ describe(IngredientsTransformer::class, function () {
         expect($transformed)->toContainKey('name');
         expect($transformed['name'])->toBe('banana');
     });
-
 });

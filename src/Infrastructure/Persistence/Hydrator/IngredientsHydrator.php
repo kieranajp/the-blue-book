@@ -1,10 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Domain\Ingredients\Repository;
+namespace BlueBook\Infrastructure\Persistence\Hydrator;
 
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientId;
-use BlueBook\Infrastructure\Database\HydratorInterface;
 use Ramsey\Uuid\Uuid;
 
 class IngredientsHydrator implements HydratorInterface

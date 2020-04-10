@@ -7,8 +7,8 @@ use League\Container\ReflectionContainer;
 $providers = require_once 'services.php';
 $mapRoutes = require_once 'routes.php';
 
-$container = new Container;
-$container->delegate((new ReflectionContainer)->cacheResolutions());
+$container = new Container();
+$container->delegate((new ReflectionContainer())->cacheResolutions());
 
 $providers->map(function (string $provider) use ($container): void {
     $container->addServiceProvider($provider);

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Infrastructure\Database;
+namespace BlueBook\Infrastructure\Persistence;
 
 use Gentux\Healthz\HealthCheck;
 use PDO;

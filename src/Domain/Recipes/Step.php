@@ -2,27 +2,14 @@
 
 namespace BlueBook\Domain\Recipes;
 
-class Step
+final class Step
 {
-    /**
-     * @var RecipeId
-     */
-    private $recipeId;
-    /**
-     * @var int
-     */
-    private $index;
-    /**
-     * @var string
-     */
-    private $instruction;
+    private RecipeId $recipeId;
 
-    /**
-     * Step constructor.
-     * @param RecipeId $recipeId
-     * @param int $index
-     * @param string $instruction
-     */
+    private int $index;
+
+    private string $instruction;
+
     public function __construct(RecipeId $recipeId, int $index, string $instruction)
     {
         $this->recipeId = $recipeId;

@@ -2,13 +2,8 @@
 
 namespace BlueBook\Infrastructure\ServiceProvider;
 
-use BlueBook\Application\Controller\HealthCheck\HealthCheckController;
-use BlueBook\Application\Controller\Ingredients\IndexIngredientsController;
-use BlueBook\Application\Transformer\IngredientsTransformer;
-use BlueBook\Domain\Ingredients\Repository\IngredientsRepositoryInterface;
-use BlueBook\Infrastructure\Router\Middleware\LoggerMiddleware;
-use BlueBook\Infrastructure\Router\Middleware\PaginationMiddleware;
-use Gentux\Healthz\Healthz;
+use BlueBook\Application\Common\Middleware\LoggerMiddleware;
+use BlueBook\Application\Common\Middleware\ErrorHandlingMiddleware;
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Psr\Log\LoggerInterface;
@@ -33,10 +28,12 @@ class MiddlewareServiceProvider extends AbstractServiceProvider
 
         $container->add(LoggerMiddleware::class)
             ->addArgument(LoggerInterface::class)
-            ->addArgument(Stopwatch::class);
+            ->addArgument(Stopwatch::class)
+            ->addArgument([ 'level' => getenv('LOG_LEVEL') ?: 'warn' ]);
 
         $container->add('middleware', [
             $container->get(LoggerMiddleware::class),
+            $container->get(ErrorHandlingMiddleware::class),
         ]);
     }
 }

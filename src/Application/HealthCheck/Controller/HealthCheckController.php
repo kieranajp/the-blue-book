@@ -1,29 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Application\Controller\HealthCheck;
+namespace BlueBook\Application\HealthCheck\Controller;
 
 use Gentux\Healthz\HealthResult;
 use Gentux\Healthz\Healthz;
+use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
 class HealthCheckController
 {
-    /**
-     * @var Healthz
-     */
-    private $healthcheck;
+    private Healthz $healthcheck;
 
-    /**
-     * HealthCheckController constructor.
-     *
-     * @param Healthz $healthcheck
-     */
     public function __construct(Healthz $healthcheck)
     {
         $this->healthcheck = $healthcheck;
     }
 
-    public function __invoke()
+    public function __invoke(): ResponseInterface
     {
         $results = $this->healthcheck->run();
 

@@ -17,6 +17,8 @@ services:
     build:
       dockerfile: ./docker/php-fpm/Dockerfile
       context: .
+      args:
+        ENABLE_XDEBUG: "True"
     volumes:
     - ./:/server/http
     env_file:

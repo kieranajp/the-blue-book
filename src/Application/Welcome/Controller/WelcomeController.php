@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Application\Controller\Welcome;
+namespace BlueBook\Application\Welcome\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\JsonResponse;

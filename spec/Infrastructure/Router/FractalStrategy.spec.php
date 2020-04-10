@@ -12,15 +12,15 @@ use Zend\Diactoros\ServerRequest;
 describe(FractalStrategy::class, function () {
 
     it('converts an array to a JSON response', function () {
-         $responseFactory = new ResponseFactory;
+         $responseFactory = new ResponseFactory();
          $strategy = new FractalStrategy($responseFactory);
-         $container = new Container;
+         $container = new Container();
 
          allow($strategy)->toReceive('getContainer')
              ->andReturn($container);
 
          $route = new Route('POST', '/banana', 'BananaHandler');
-         $request = new ServerRequest;
+         $request = new ServerRequest();
 
          allow($route)->toReceive('getVars')
              ->andReturn([]);
@@ -37,9 +37,9 @@ describe(FractalStrategy::class, function () {
     });
 
     it('transforms a Resource', function () {
-        $responseFactory = new ResponseFactory;
+        $responseFactory = new ResponseFactory();
         $strategy = new FractalStrategy($responseFactory);
-        $container = new Container;
+        $container = new Container();
 
         allow($strategy)->toReceive('getContainer')
             ->andReturn($container);
@@ -48,7 +48,7 @@ describe(FractalStrategy::class, function () {
             ->andReturn([ 'hello' => 'banana' ]);
 
         $route = new Route('POST', '/banana', 'BananaHandler');
-        $request = new ServerRequest;
+        $request = new ServerRequest();
 
         allow($route)->toReceive('getVars')
             ->andReturn([]);
@@ -62,7 +62,5 @@ describe(FractalStrategy::class, function () {
         expect($result)->toBeAnInstanceOf(ResponseInterface::class);
 
         expect((string) $result->getBody())->toContain('banana');
-
     });
-
 });

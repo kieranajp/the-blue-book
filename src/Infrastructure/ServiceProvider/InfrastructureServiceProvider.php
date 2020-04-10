@@ -2,8 +2,11 @@
 
 namespace BlueBook\Infrastructure\ServiceProvider;
 
-use BlueBook\Infrastructure\Database\PostgresHealthCheck;
-use BlueBook\Infrastructure\Router\Middleware\LoggerMiddleware;
+use League\Container\Container;
+use Http\Factory\Diactoros\ResponseFactory;
+use Psr\Http\Message\ResponseFactoryInterface;
+use League\Fractal\Serializer\DataArraySerializer;
+use BlueBook\Infrastructure\Persistence\PostgresHealthCheck;
 use Gentux\Healthz\Healthz;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Fractal\Manager;
@@ -27,9 +30,9 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         'fractal',
         Stopwatch::class,
         LoggerInterface::class,
-        LoggerMiddleware::class,
         LoggerAwareInterface::class,
         ServerRequestInterface::class,
+        ResponseFactoryInterface::class,
         Healthz::class,
     ];
 
@@ -38,6 +41,7 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
      */
     public function register(): void
     {
+        /** @var Container $container */
         $container = $this->getContainer();
 
         $container->add('emitter', SapiEmitter::class);
@@ -52,12 +56,19 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
             );
         });
 
+        $container->add(ResponseFactoryInterface::class, new ResponseFactory());
+
+        $container->share(Manager::class, function (): Manager {
+            return (new Manager())
+                ->setSerializer(new DataArraySerializer());
+        });
+
         $container->add(Healthz::class)
             ->addMethodCall('push', [PostgresHealthCheck::class]);
 
         $container->add(StreamHandler::class)
             ->addArgument(getenv('LOG_STREAM'))
-            ->addMethodCall('setFormatter', [ new LogstashFormatter(getenv('APP_NAME')) ])
+            ->addMethodCall('setFormatter', [ new LogstashFormatter(getenv('APP_NAME') ?: '') ])
             ->addMethodCall('setLevel', [ getenv('LOG_LEVEL') ]);
 
         $container->add(Stopwatch::class);

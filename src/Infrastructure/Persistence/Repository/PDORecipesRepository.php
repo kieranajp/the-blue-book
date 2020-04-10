@@ -1,39 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace BlueBook\Infrastructure\Repository;
+namespace BlueBook\Infrastructure\Persistence\Repository;
 
+use PDO;
+use Ds\Vector;
+use Psr\Log\LoggerInterface;
 use BlueBook\Domain\Recipes\Recipe;
 use BlueBook\Domain\Recipes\RecipeIdInterface;
 use BlueBook\Domain\Recipes\Repository\RecipesRepositoryInterface;
-use BlueBook\Infrastructure\Database\HydratorInterface;
-use Ds\Vector;
-use Psr\Log\LoggerInterface;
+use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
 
-class RecipesRepository implements RecipesRepositoryInterface
+class PDORecipesRepository implements RecipesRepositoryInterface
 {
-    /**
-     * @var \PDO
-     */
-    private $connection;
+    private PDO $connection;
 
-    /**
-     * @var HydratorInterface
-     */
-    private $hydrator;
+    private HydratorInterface $hydrator;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /**
-     * IngredientsRepository constructor.
-     *
-     * @param \PDO              $connection
-     * @param HydratorInterface $hydrator
-     * @param LoggerInterface   $logger
-     */
-    public function __construct(\PDO $connection, HydratorInterface $hydrator, LoggerInterface $logger)
+    public function __construct(PDO $connection, HydratorInterface $hydrator, LoggerInterface $logger)
     {
         $this->connection = $connection;
         $this->hydrator = $hydrator;

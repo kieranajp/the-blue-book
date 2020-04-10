@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-use BlueBook\Application\Controller\HealthCheck\HealthCheckController;
-use BlueBook\Application\Controller\Ingredients\CreateIngredientController;
-use BlueBook\Application\Controller\Ingredients\IndexIngredientsController;
-use BlueBook\Application\Controller\Recipes\IndexRecipesController;
-use BlueBook\Application\Controller\Recipes\ShowRecipeController;
-use BlueBook\Application\Controller\Welcome\WelcomeController;
 use BlueBook\Infrastructure\Router\Router;
+use BlueBook\Application\Welcome\Controller\WelcomeController;
+use BlueBook\Application\Recipes\Controller\ShowRecipeController;
+use BlueBook\Application\Recipes\Controller\IndexRecipesController;
+use BlueBook\Application\HealthCheck\Controller\HealthCheckController;
+use BlueBook\Application\Ingredients\Controller\IndexIngredientsController;
+use BlueBook\Application\Ingredients\Controller\CreateIngredientController;
 
 /**
  * @param Router $router

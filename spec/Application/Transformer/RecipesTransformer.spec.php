@@ -20,5 +20,4 @@ describe(RecipesTransformer::class, function () {
         expect($transformed)->toContainKey('name');
         expect($transformed['name'])->toBe('Banana Split');
     });
-
 });

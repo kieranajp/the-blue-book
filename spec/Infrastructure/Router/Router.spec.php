@@ -25,7 +25,7 @@ describe(Router::class, function () use ($stubMiddleware) {
         $path = '/banana';
         $handler = 'BananaHandler';
 
-        $baseRouter = new LeagueRouter;
+        $baseRouter = new LeagueRouter();
         allow($baseRouter)->toReceive('map')
             ->with($method, $path, $handler);
 
@@ -35,18 +35,18 @@ describe(Router::class, function () use ($stubMiddleware) {
             ->andReturn([$stubMiddleware]);
 
         expect(
-            (new Router(new Container))
+            (new Router(new Container()))
                 ->map($method, $path, $handler)
         )->toBeEmpty();
     });
 
     it('defers dispatching requests', function () use ($stubMiddleware) {
-        $request = new ServerRequest;
-        $baseRouter = new LeagueRouter;
+        $request = new ServerRequest();
+        $baseRouter = new LeagueRouter();
 
         allow($baseRouter)->toReceive('dispatch')
             ->with($request)
-            ->andReturn(new Response);
+            ->andReturn(new Response());
 
         allow($baseRouter)->toReceive('middleware')
             ->with($stubMiddleware);
@@ -60,9 +60,8 @@ describe(Router::class, function () use ($stubMiddleware) {
             ->andReturn($request);
 
         expect(
-            (new Router(new Container))
+            (new Router(new Container()))
                 ->dispatch()
         )->toBeAnInstanceOf(Response::class);
     });
 });
-

@@ -2,9 +2,10 @@
 
 namespace BlueBook\Infrastructure\Router;
 
-use BlueBook\Infrastructure\Router\Middleware\LoggerMiddleware;
 use Http\Factory\Diactoros\ResponseFactory;
 use League\Container\Container;
+use League\Route\Route;
+use League\Route\RouteGroup;
 use League\Route\Router as LeagueRouter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,12 +15,12 @@ class Router
     /**
      * @var Container
      */
-    private $container;
+    private Container $container;
 
     /**
      * @var LeagueRouter
      */
-    private $router;
+    private LeagueRouter $router;
 
     /**
      * Router constructor.
@@ -46,10 +47,25 @@ class Router
      * @param string $method
      * @param string $path
      * @param string $handler
+     * @return Route
      */
-    public function map(string $method, string $path, string $handler): void
+    public function map(string $method, string $path, string $handler): Route
     {
-        $this->router->map($method, $path, $handler);
+        $route = $this->router->map($method, $path, $handler);
+        $route->setName(substr($handler, ((int) strrpos($handler, '\\')) + 1));
+        return $route;
+    }
+
+    /**
+     * Group routes for convenience
+     *
+     * @param string $prefix
+     * @param callable $callback
+     * @return RouteGroup
+     */
+    public function group(string $prefix, callable $callback): RouteGroup
+    {
+        return $this->router->group($prefix, $callback);
     }
 
     /**
@@ -61,6 +77,6 @@ class Router
     {
         $request = $this->container->get(ServerRequestInterface::class);
 
-        return $this->router->dispatch($request);
+        return $this->router->dispatch($request)->withAddedHeader('Content-Type', 'application/json');
     }
 }
