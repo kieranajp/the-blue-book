@@ -3,7 +3,8 @@
 namespace BlueBook\Infrastructure\ServiceProvider;
 
 use League\Container\Container;
-use Http\Factory\Diactoros\ResponseFactory;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Message\ResponseFactoryInterface;
 use League\Fractal\Serializer\DataArraySerializer;
 use BlueBook\Infrastructure\Persistence\PostgresHealthCheck;
@@ -17,8 +18,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
-use Zend\Diactoros\Response\SapiEmitter;
-use Zend\Diactoros\ServerRequestFactory;
 
 final class InfrastructureServiceProvider extends AbstractServiceProvider
 {
@@ -26,8 +25,6 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
      * @var array
      */
     protected $provides = [
-        'emitter',
-        'fractal',
         Stopwatch::class,
         LoggerInterface::class,
         LoggerAwareInterface::class,
@@ -44,19 +41,12 @@ final class InfrastructureServiceProvider extends AbstractServiceProvider
         /** @var Container $container */
         $container = $this->getContainer();
 
-        $container->add('emitter', SapiEmitter::class);
-        $container->add('fractal', Manager::class);
-        $container->add(ServerRequestInterface::class, function (): ServerRequestInterface {
-            return ServerRequestFactory::fromGlobals(
-                $_SERVER,
-                $_GET,
-                $_POST,
-                $_COOKIE,
-                $_FILES
-            );
+        $psr17Factory = new Psr17Factory();
+        $container->add(ResponseFactoryInterface::class, $psr17Factory);
+        $container->add(ServerRequestInterface::class, function () use ($psr17Factory): ServerRequestInterface {
+            return (new ServerRequestCreator($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory))
+                ->fromGlobals();
         });
-
-        $container->add(ResponseFactoryInterface::class, new ResponseFactory());
 
         $container->share(Manager::class, function (): Manager {
             return (new Manager())

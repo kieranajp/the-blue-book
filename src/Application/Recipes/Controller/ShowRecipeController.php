@@ -27,7 +27,7 @@ class ShowRecipeController
     {
         $includes = $request->getAttribute('includes');
 
-        $recipe = $this->recipesRepository->find(RecipeId::fromValue($args['id']), $includes);
+        $recipe = $this->recipesRepository->find(RecipeId::fromString($args['id']), $includes);
         return new Item($recipe, $this->transformer);
     }
 }

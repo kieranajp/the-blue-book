@@ -3,7 +3,7 @@
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
 use PDOStatement;
-use BlueBook\Domain\Recipes\RecipeIdInterface;
+use BlueBook\Domain\Recipes\RecipeId;
 use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
 
 class GetRecipeById extends AbstractPDOQuery
@@ -43,7 +43,7 @@ class GetRecipeById extends AbstractPDOQuery
         SQL;
     }
 
-    public function execute(RecipeIdInterface $recipeId, array $includes = []): PDOStatement
+    public function execute(RecipeId $recipeId, array $includes = []): PDOStatement
     {
         $this->includes = $includes;
 

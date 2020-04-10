@@ -6,7 +6,7 @@ use PDO;
 use Ds\Vector;
 use Psr\Log\LoggerInterface;
 use BlueBook\Domain\Recipes\Recipe;
-use BlueBook\Domain\Recipes\RecipeIdInterface;
+use BlueBook\Domain\Recipes\RecipeId;
 use BlueBook\Domain\Recipes\Repository\RecipesRepositoryInterface;
 use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
 use BlueBook\Infrastructure\Persistence\Queries\Recipes\GetRecipeById;
@@ -52,7 +52,7 @@ class PDORecipesRepository implements RecipesRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function find(RecipeIdInterface $recipeId, array $includes = []): Recipe
+    public function find(RecipeId $recipeId, array $includes = []): Recipe
     {
         $stmt = (new GetRecipeById($this->connection))->execute($recipeId, $includes);
 

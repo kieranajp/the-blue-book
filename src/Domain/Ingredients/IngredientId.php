@@ -2,9 +2,25 @@
 
 namespace BlueBook\Domain\Ingredients;
 
-use MsgPhp\Domain\Infrastructure\Uuid\DomainIdTrait;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
-final class IngredientId implements IngredientIdInterface
+final class IngredientId
 {
-    use DomainIdTrait;
+    private UuidInterface $uuid;
+
+    public function __construct(?UuidInterface $uuid = null)
+    {
+        $this->uuid = $uuid ?? Uuid::uuid4();
+    }
+
+    public function __toString(): string
+    {
+        return $this->uuid->toString();
+    }
+
+    public static function fromString(string $value): IngredientId
+    {
+        return new static(Uuid::fromString($value));
+    }
 }

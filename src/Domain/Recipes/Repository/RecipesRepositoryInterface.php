@@ -3,7 +3,7 @@
 namespace BlueBook\Domain\Recipes\Repository;
 
 use BlueBook\Domain\Recipes\Recipe;
-use BlueBook\Domain\Recipes\RecipeIdInterface;
+use BlueBook\Domain\Recipes\RecipeId;
 use Ds\Vector;
 
 interface RecipesRepositoryInterface
@@ -18,9 +18,9 @@ interface RecipesRepositoryInterface
     /**
      * Find a Recipe by its ID.
      *
-     * @param RecipeIdInterface $recipeId
+     * @param RecipeId $recipeId
      * @param array $includes
      * @return Recipe
      */
-    public function find(RecipeIdInterface $recipeId, array $includes = []): Recipe;
+    public function find(RecipeId $recipeId, array $includes = []): Recipe;
 }

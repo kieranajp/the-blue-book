@@ -2,13 +2,13 @@
 
 namespace BlueBook\Infrastructure\Router;
 
-use Http\Factory\Diactoros\ResponseFactory;
 use League\Container\Container;
 use League\Route\Route;
 use League\Route\RouteGroup;
 use League\Route\Router as LeagueRouter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 
 class Router
 {
@@ -30,8 +30,7 @@ class Router
     public function __construct(Container $container)
     {
         $this->container = $container;
-
-        $responseFactory = new ResponseFactory();
+        $responseFactory = $container->get(ResponseFactoryInterface::class);
 
         $strategy = new FractalStrategy($responseFactory);
         $strategy->setContainer($container);
