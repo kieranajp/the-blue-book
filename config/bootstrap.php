@@ -3,6 +3,7 @@
 use BlueBook\Infrastructure\Router\Router;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 $providers = require_once 'services.php';
 $mapRoutes = require_once 'routes.php';
@@ -17,4 +18,4 @@ $providers->map(function (string $provider) use ($container): void {
 $router = new Router($container);
 $mapRoutes($router);
 
-$container->get('emitter')->emit($router->dispatch());
+$container->get(SapiEmitter::class)->emit($router->dispatch());
