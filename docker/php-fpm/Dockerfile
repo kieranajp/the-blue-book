@@ -1,8 +1,8 @@
 FROM composer
 
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
-ENV PHP_EXT_XDEBUG_VERSION=2.7.2
+ENV PHP_EXT_XDEBUG_VERSION=2.9.4
 
 # Install PHP dependencies
 # See https://github.com/docker-library/php
@@ -29,6 +29,7 @@ COPY . ${APP_DIR}
 COPY docker/php-fpm/php.ini ${PHP_INI_DIR}/
 
 RUN set -ex \
+    && composer global require hirak/prestissimo \
     # Install project dependencies
     && composer install --prefer-dist --ignore-platform-reqs --no-interaction \
     ## Customize PHP fpm configuration
