@@ -9,6 +9,7 @@ use BlueBook\Domain\Recipes\Recipe;
 use BlueBook\Domain\Recipes\RecipeIdInterface;
 use BlueBook\Domain\Recipes\Repository\RecipesRepositoryInterface;
 use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
+use BlueBook\Infrastructure\Persistence\Queries\Recipes\GetRecipeById;
 
 class PDORecipesRepository implements RecipesRepositoryInterface
 {
@@ -51,15 +52,9 @@ class PDORecipesRepository implements RecipesRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function find(RecipeIdInterface $recipeId): Recipe
+    public function find(RecipeIdInterface $recipeId, array $includes = []): Recipe
     {
-        $stmt = $this->connection->prepare(
-            'SELECT * FROM recipes WHERE uuid = :recipeId LIMIT 1;'
-        );
-
-        $stmt->execute([
-            ':recipeId' => (string) $recipeId,
-        ]);
+        $stmt = (new GetRecipeById($this->connection))->execute($recipeId, $includes);
 
         $row = $stmt->fetch();
 

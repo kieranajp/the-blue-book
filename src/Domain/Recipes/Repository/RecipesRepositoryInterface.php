@@ -19,7 +19,8 @@ interface RecipesRepositoryInterface
      * Find a Recipe by its ID.
      *
      * @param RecipeIdInterface $recipeId
+     * @param array $includes
      * @return Recipe
      */
-    public function find(RecipeIdInterface $recipeId): Recipe;
+    public function find(RecipeIdInterface $recipeId, array $includes = []): Recipe;
 }

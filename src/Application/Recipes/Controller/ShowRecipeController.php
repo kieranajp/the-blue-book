@@ -25,7 +25,9 @@ class ShowRecipeController
 
     public function __invoke(ServerRequestInterface $request, array $args): ResourceInterface
     {
-        $recipe = $this->recipesRepository->find(RecipeId::fromValue($args['id']));
+        $includes = $request->getAttribute('includes');
+
+        $recipe = $this->recipesRepository->find(RecipeId::fromValue($args['id']), $includes);
         return new Item($recipe, $this->transformer);
     }
 }

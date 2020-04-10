@@ -10,6 +10,7 @@ class RecipesTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
         'steps',
+        'ingredients',
     ];
 
     public function transform(Recipe $recipe): array
@@ -21,6 +22,11 @@ class RecipesTransformer extends TransformerAbstract
             'timing' => $recipe->getTiming()->format('%H:%I:%S'),
             'serving_size' => $recipe->getServings(),
         ];
+    }
+
+    public function includeIngredients(Recipe $recipe): Collection
+    {
+        dd($recipe);
     }
 
     public function includeSteps(Recipe $recipe): Collection

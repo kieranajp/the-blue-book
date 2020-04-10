@@ -28,6 +28,6 @@ class ParseQueryStringMiddleware implements MiddlewareInterface
             $this->fractal->parseIncludes($query['include']);
         }
 
-        return $handler->handle($request);
+        return $handler->handle($request->withAttribute('includes', $this->fractal->getRequestedIncludes()));
     }
 }
