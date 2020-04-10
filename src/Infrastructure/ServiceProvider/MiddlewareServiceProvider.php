@@ -8,6 +8,7 @@ use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
+use BlueBook\Application\Common\Middleware\ParseQueryStringMiddleware;
 
 class MiddlewareServiceProvider extends AbstractServiceProvider
 {
@@ -34,6 +35,7 @@ class MiddlewareServiceProvider extends AbstractServiceProvider
         $container->add('middleware', [
             $container->get(LoggerMiddleware::class),
             $container->get(ErrorHandlingMiddleware::class),
+            $container->get(ParseQueryStringMiddleware::class),
         ]);
     }
 }

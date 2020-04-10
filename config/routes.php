@@ -21,5 +21,5 @@ return function (Router $router): void {
 
     $router->map('GET', '/recipes', IndexRecipesController::class);
 
-    $router->map('GET', '/recipe/{id:uuid}', ShowRecipeController::class);
+    $router->map('GET', '/recipes/{id:uuid}', ShowRecipeController::class);
 };

@@ -4,9 +4,14 @@ namespace BlueBook\Application\Recipes\Transformer;
 
 use BlueBook\Domain\Recipes\Recipe;
 use League\Fractal\TransformerAbstract;
+use League\Fractal\Resource\Collection;
 
 class RecipesTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'steps',
+    ];
+
     public function transform(Recipe $recipe): array
     {
         return [
@@ -16,5 +21,10 @@ class RecipesTransformer extends TransformerAbstract
             'timing' => $recipe->getTiming()->format('%H:%I:%S'),
             'serving_size' => $recipe->getServings(),
         ];
+    }
+
+    public function includeSteps(Recipe $recipe): Collection
+    {
+        dd('here');
     }
 }
