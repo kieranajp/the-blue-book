@@ -54,9 +54,9 @@ class PDORecipesRepository implements RecipesRepositoryInterface
      */
     public function find(RecipeId $recipeId, array $includes = []): Recipe
     {
-        $stmt = (new GetRecipeById($this->connection))->execute($recipeId, $includes);
+        $results = (new GetRecipeById($this->connection))->execute($recipeId, $includes)->fetchAll();
+        $results = $this->hydrator->resolveIngredients($results);
 
-        $row = $stmt->fetch();
-        return $this->hydrator->hydrate($row);
+        return $this->hydrator->hydrate($results);
     }
 }

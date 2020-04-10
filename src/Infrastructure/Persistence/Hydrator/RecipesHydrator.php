@@ -2,6 +2,8 @@
 
 namespace BlueBook\Infrastructure\Persistence\Hydrator;
 
+use Ds\Vector;
+use UnderflowException;
 use BlueBook\Domain\Recipes\Recipe;
 use BlueBook\Domain\Recipes\RecipeId;
 use DateInterval;
@@ -28,6 +30,48 @@ class RecipesHydrator implements HydratorInterface
             (int) $recipe['serving_size'],
             [],
         );
+    }
+
+    public function resolveIngredients(array $records): array
+    {
+        $recipes = new Vector();
+
+        foreach ($records as $record) {
+            try {
+                $recipe = $recipes
+                    ->filter(fn(array $recipe): bool => (int) $record['id'] === (int) $recipe['id'])
+                    ->first();
+            } catch (UnderflowException $e) {
+                $recipe = $record;
+                $recipe['ingredients'][] = $this->extractIngredient($record);
+                $recipes->push($recipe);
+                continue;
+            }
+
+            $recipes = $recipes
+                ->filter(fn(array $recipe): bool => (int) $record['id'] !== (int) $recipe['id']);
+
+            $recipe['ingredients'][] = $this->extractIngredient($record);
+            $recipes->push($recipe);
+        }
+
+        return $recipes->toArray();
+    }
+
+    private function extractIngredient(array $record): array
+    {
+        $ingredientFields = [
+            'ingredient_name',
+            'quantity',
+            'unit_name',
+        ];
+
+        $ingredient = [];
+        foreach ($ingredientFields as $field) {
+            $ingredient[$field] = $record[$field];
+        }
+
+        return $ingredient;
     }
 
     public function hydrateIngredients(array $recipe)
