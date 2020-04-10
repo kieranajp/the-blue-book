@@ -18,12 +18,21 @@ class RecipesHydrator implements HydratorInterface
         $hours = $times[0];
         $minutes = $times[1];
 
+        $ingredients = $this->hydrateIngredients($recipe);
+
         return new Recipe(
             new RecipeId(Uuid::fromString($recipe['uuid'])),
             $recipe['name'],
             $recipe['description'],
             new DateInterval(sprintf('PT%sH%sM', $hours, $minutes)),
-            (int) $recipe['serving_size']
+            (int) $recipe['serving_size'],
+            [],
         );
+    }
+
+    public function hydrateIngredients(array $recipe)
+    {
+        dd($recipe);
+        return (new IngredientsHydrator())->hydrate($recipe);
     }
 }

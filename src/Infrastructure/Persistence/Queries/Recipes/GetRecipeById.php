@@ -34,10 +34,12 @@ class GetRecipeById extends AbstractPDOQuery
         return <<<SQL
             SELECT
                 *
-            FROM recipes
-            --INNER JOIN ingredients 
-            WHERE uuid = :recipeId
-            LIMIT 1;
+            FROM recipe_ingredient ri
+            INNER JOIN recipes r
+                ON r.uuid = ri.recipe_id
+            INNER JOIN ingredients i
+                ON i.uuid = ri.ingredient_id
+            WHERE r.uuid = :recipeId
         SQL;
     }
 

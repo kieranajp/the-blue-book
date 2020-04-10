@@ -32,7 +32,7 @@ class PDORecipesRepository implements RecipesRepositoryInterface
     public function all(): Vector
     {
         $stmt = $this->connection->prepare(
-            'SELECT 
+            'SELECT
                 *,
                 EXTRACT(HOUR FROM timing) AS hours,
                 EXTRACT(MINUTE FROM timing) AS minutes
@@ -57,7 +57,6 @@ class PDORecipesRepository implements RecipesRepositoryInterface
         $stmt = (new GetRecipeById($this->connection))->execute($recipeId, $includes);
 
         $row = $stmt->fetch();
-
         return $this->hydrator->hydrate($row);
     }
 }
