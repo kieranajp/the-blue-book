@@ -5,6 +5,7 @@ namespace BlueBook\Infrastructure\Persistence\Queries;
 use PDO;
 use PDOStatement;
 use PDOException;
+use League\Route\Http\Exception\NotFoundException;
 
 abstract class AbstractPDOQuery
 {
@@ -17,11 +18,17 @@ abstract class AbstractPDOQuery
 
     abstract protected function query(): string;
 
-    protected function executeQuery(array $parameters = []): PDOStatement
+    protected function executeQuery(array $parameters = []): array
     {
         $stmt = $this->conn->prepare($this->query());
         $stmt->execute($parameters);
-        return $stmt;
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (! $results) {
+            throw new NotFoundException();
+        }
+
+        return $results;
     }
 
     protected function executeWriteQuery(array $parameters = []): bool

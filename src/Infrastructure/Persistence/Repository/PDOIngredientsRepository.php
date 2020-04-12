@@ -3,6 +3,7 @@
 namespace BlueBook\Infrastructure\Persistence\Repository;
 
 use PDO;
+use Ds\Sequence;
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientId;
 use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
@@ -32,16 +33,10 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function all(): Vector
+    public function all(): Sequence
     {
-        $stmt = (new GetIngredients($this->connection))->execute();
-
-        $ingredients = new Vector();
-        while ($row = $stmt->fetch()) {
-            $ingredients->push($this->hydrator->hydrate($row));
-        }
-
-        return $ingredients;
+        $results = (new GetIngredients($this->connection))->execute();
+        return (new Vector($results))->map(fn(array $ingredient): Ingredient => $this->hydrator->hydrate($ingredient));
     }
 
     /**
@@ -49,8 +44,8 @@ class PDOIngredientsRepository implements IngredientsRepositoryInterface
      */
     public function find(IngredientId $ingredientId): Ingredient
     {
-        $stmt = (new GetIngredientById($this->connection))->execute();
-        return $this->hydrator->hydrate($stmt->fetch());
+        $results = (new GetIngredientById($this->connection))->execute($ingredientId);
+        return $this->hydrator->hydrate($results);
     }
 
     /**

@@ -2,18 +2,18 @@
 
 namespace BlueBook\Domain\Ingredients\Repository;
 
+use Ds\Sequence;
 use BlueBook\Domain\Ingredients\Ingredient;
 use BlueBook\Domain\Ingredients\IngredientId;
-use Ds\Vector;
 
 interface IngredientsRepositoryInterface
 {
     /**
      * Find all Ingredients.
      *
-     * @return Vector
+     * @return Sequence
      */
-    public function all(): Vector;
+    public function all(): Sequence;
 
     /**
      * Find an Ingredient by its ID.

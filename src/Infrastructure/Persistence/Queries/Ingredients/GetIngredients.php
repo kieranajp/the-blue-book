@@ -14,7 +14,7 @@ class GetIngredients extends AbstractPDOQuery
         SQL;
     }
 
-    public function execute(): PDOStatement
+    public function execute(): array
     {
         return $this->executeQuery();
     }

@@ -2,10 +2,10 @@
 
 namespace BlueBook\Application\HealthCheck\Controller;
 
+use Nyholm\Psr7\Response;
 use Gentux\Healthz\HealthResult;
 use Gentux\Healthz\Healthz;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response\JsonResponse;
 
 class HealthCheckController
 {
@@ -29,9 +29,6 @@ class HealthCheckController
             ];
         }, $results->all());
 
-        return new JsonResponse(
-            $body,
-            $statusCode
-        );
+        return new Response($statusCode, [], json_encode($body));
     }
 }

@@ -55,12 +55,10 @@ class PDORecipesRepository implements RecipesRepositoryInterface
      */
     public function find(RecipeId $recipeId, array $includes = []): Recipe
     {
-        $results = (new GetRecipeById($this->connection))->execute($recipeId)->fetch(PDO::FETCH_ASSOC);
+        $results = (new GetRecipeById($this->connection))->execute($recipeId);
 
         if (in_array('ingredients', $includes)) {
-            $results['ingredients'] = (new IncludeRecipeIngredients($this->connection))
-                ->execute($recipeId)
-                ->fetchAll(PDO::FETCH_ASSOC);
+            $results['ingredients'] = (new IncludeRecipeIngredients($this->connection))->execute($recipeId);
         }
 
         return $this->hydrator->hydrate($results);

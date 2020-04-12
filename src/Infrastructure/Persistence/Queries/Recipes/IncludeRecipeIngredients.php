@@ -2,8 +2,10 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
+use PDO;
 use PDOStatement;
 use BlueBook\Domain\Recipes\RecipeId;
+use League\Container\Exception\NotFoundException;
 use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
 
 class IncludeRecipeIngredients extends AbstractPDOQuery
@@ -26,8 +28,12 @@ class IncludeRecipeIngredients extends AbstractPDOQuery
         SQL;
     }
 
-    public function execute(RecipeId $recipeId): PDOStatement
+    public function execute(RecipeId $recipeId): array
     {
-        return $this->executeQuery([ 'recipeId' => (string) $recipeId ]);
+        try {
+            return $this->executeQuery([ 'recipeId' => (string) $recipeId ]);
+        } catch (NotFoundException $e) {
+            return [];
+        }
     }
 }

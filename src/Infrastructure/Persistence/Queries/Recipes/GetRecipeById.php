@@ -2,7 +2,6 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
-use PDOStatement;
 use BlueBook\Domain\Recipes\RecipeId;
 use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
 
@@ -15,7 +14,7 @@ class GetRecipeById extends AbstractPDOQuery
         SQL;
     }
 
-    public function execute(RecipeId $recipeId): PDOStatement
+    public function execute(RecipeId $recipeId): array
     {
         return $this->executeQuery([ 'recipeId' => (string) $recipeId ]);
     }

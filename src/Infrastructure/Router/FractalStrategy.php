@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Bluebook\Infrastructure\Router;
+namespace BlueBook\Infrastructure\Router;
 
 use League\Container\Container;
 use League\Fractal\Manager;

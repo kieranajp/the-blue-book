@@ -3,7 +3,7 @@
 namespace BlueBook\Infrastructure\Persistence\Queries\Ingredients;
 
 use PDOStatement;
-use Ramsey\Uuid\UuidInterface;
+use BlueBook\Domain\Ingredients\IngredientId;
 use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
 
 class GetIngredientById extends AbstractPDOQuery
@@ -15,7 +15,7 @@ class GetIngredientById extends AbstractPDOQuery
         SQL;
     }
 
-    public function execute(UuidInterface $ingredientId): PDOStatement
+    public function execute(IngredientId $ingredientId): array
     {
         return $this->executeQuery([ 'ingredientId' => (string) $ingredientId ]);
     }

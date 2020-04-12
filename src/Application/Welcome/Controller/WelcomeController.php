@@ -2,16 +2,16 @@
 
 namespace BlueBook\Application\Welcome\Controller;
 
+use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response\JsonResponse;
 
 class WelcomeController
 {
     public function __invoke(): ResponseInterface
     {
-        return new JsonResponse([
+        return new Response(200, [], json_encode([
             'application' => 'The Blue Book',
             'version' => '0.1.0',
-        ]);
+        ]));
     }
 }

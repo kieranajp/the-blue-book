@@ -60,10 +60,6 @@ class ErrorHandlingMiddleware implements MiddlewareInterface
             'reason_phrase' => $status >= 500 ? 'Internal server error' : $exception->getMessage(),
         ];
 
-        if ($exception instanceof HttpExceptionInterface && $response = $exception->getResponse()) {
-            $body['reason_phrase'] = $response->getReasonPhrase();
-        }
-
         if (getenv('APP_ENV') === 'local') {
             $body['message'] = $exception->getMessage();
             $body['stack_trace'] = $exception->getTrace();
