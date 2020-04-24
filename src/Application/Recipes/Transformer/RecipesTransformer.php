@@ -29,8 +29,9 @@ class RecipesTransformer extends TransformerAbstract
         return $this->collection($recipe->getIngredients(), new RecipeIngredientTransformer());
     }
 
-//    public function includeSteps(Recipe $recipe): Collection
-//    {
-//        dd('here');
-//    }
+    public function includeSteps(Recipe $recipe): Collection
+    {
+        return $this->collection($recipe->getSteps(), new RecipeStepTransformer());
+    }
+
 }

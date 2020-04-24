@@ -11,6 +11,7 @@ use BlueBook\Domain\Recipes\Repository\RecipesRepositoryInterface;
 use BlueBook\Infrastructure\Persistence\Hydrator\HydratorInterface;
 use BlueBook\Infrastructure\Persistence\Queries\Recipes\GetRecipeById;
 use BlueBook\Infrastructure\Persistence\Queries\Recipes\IncludeRecipeIngredients;
+use BlueBook\Infrastructure\Persistence\Queries\Recipes\IncludeRecipeSteps;
 
 class PDORecipesRepository implements RecipesRepositoryInterface
 {
@@ -59,6 +60,10 @@ class PDORecipesRepository implements RecipesRepositoryInterface
 
         if (in_array('ingredients', $includes)) {
             $results['ingredients'] = (new IncludeRecipeIngredients($this->connection))->execute($recipeId);
+        }
+
+        if (in_array('steps', $includes)) {
+            $results['steps'] = (new IncludeRecipeSteps($this->connection))->execute($recipeId);
         }
 
         return $this->hydrator->hydrate($results);

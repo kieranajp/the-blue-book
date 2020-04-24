@@ -18,13 +18,16 @@ class Recipe
 
     private array $ingredients;
 
+    private array $steps;
+
     public function __construct(
         RecipeId $recipeId,
         string $name,
         string $description,
         DateInterval $timing,
         int $servings,
-        array $ingredients
+        array $ingredients,
+        array $steps
     ) {
         $this->recipeId = $recipeId;
         $this->name = $name;
@@ -32,6 +35,7 @@ class Recipe
         $this->timing = $timing;
         $this->servings = $servings;
         $this->ingredients = $ingredients;
+        $this->steps = $steps;
     }
 
     public function getRecipeId(): RecipeId
@@ -62,5 +66,10 @@ class Recipe
     public function getIngredients(): array
     {
         return $this->ingredients;
+    }
+
+    public function getSteps(): array
+    {
+        return $this->steps;
     }
 }
