@@ -26,6 +26,4 @@ class IndexStepsController
         $steps = $this->stepsRepository->all();
         return new Collection($steps, $this->transformer);
     }
-
-
 }

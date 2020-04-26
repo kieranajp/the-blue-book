@@ -2,10 +2,9 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
-use PDOStatement;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\FetchManyPDOQuery;
 
-class GetRecipes extends AbstractPDOQuery
+class GetRecipes extends FetchManyPDOQuery
 {
     protected function query(): string
     {

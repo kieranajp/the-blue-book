@@ -4,9 +4,11 @@ namespace BlueBook\Infrastructure\Persistence\Repository;
 
 use PDO;
 use Ds\Vector;
+use Ds\Sequence;
 use Psr\Log\LoggerInterface;
 use BlueBook\Domain\Steps\Step;
 use BlueBook\Domain\Steps\StepId;
+use BlueBook\Domain\Steps\Repository\StepsRepositoryInterface;
 use BlueBook\Infrastructure\Persistence\Queries\Steps\GetSteps;
 use BlueBook\Infrastructure\Persistence\Queries\Steps\SaveStep;
 use BlueBook\Infrastructure\Persistence\Queries\Steps\GetStepById;

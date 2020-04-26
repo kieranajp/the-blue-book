@@ -33,5 +33,4 @@ class RecipesTransformer extends TransformerAbstract
     {
         return $this->collection($recipe->getSteps(), new RecipeStepTransformer());
     }
-
 }

@@ -2,13 +2,11 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
-use PDO;
-use PDOStatement;
 use BlueBook\Domain\Recipes\RecipeId;
 use League\Container\Exception\NotFoundException;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\FetchManyPDOQuery;
 
-class IncludeRecipeIngredients extends AbstractPDOQuery
+class IncludeRecipeIngredients extends FetchManyPDOQuery
 {
     protected function query(): string
     {

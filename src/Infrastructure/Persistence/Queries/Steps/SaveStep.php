@@ -2,11 +2,10 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Steps;
 
-use PDOStatement;
 use BlueBook\Domain\Steps\Step;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\WritePDOQuery;
 
-class SaveStep extends AbstractPDOQuery
+class SaveStep extends WritePDOQuery
 {
     protected function query(): string
     {
@@ -17,7 +16,7 @@ class SaveStep extends AbstractPDOQuery
 
     public function execute(Step $step): bool
     {
-        return $this->executeWriteQuery([
+        return $this->executeQuery([
             ':id'   => (string) $step->getStepId(),
             ':index' => (int) $step->getIndex(),
             ':instruction' => (string) $step->getInstruction(),

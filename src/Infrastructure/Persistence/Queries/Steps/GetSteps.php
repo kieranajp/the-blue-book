@@ -3,9 +3,9 @@
 namespace BlueBook\Infrastructure\Persistence\Queries\Steps;
 
 use PDOStatement;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\FetchManyPDOQuery;
 
-class GetSteps extends AbstractPDOQuery
+class GetSteps extends FetchManyPDOQuery
 {
     protected function query(): string
     {

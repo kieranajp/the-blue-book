@@ -2,11 +2,10 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Steps;
 
-use PDOStatement;
 use BlueBook\Domain\Steps\StepId;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\FetchOnePDOQuery;
 
-class GetStepById extends AbstractPDOQuery
+class GetStepById extends FetchOnePDOQuery
 {
     protected function query(): string
     {

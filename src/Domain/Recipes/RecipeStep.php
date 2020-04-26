@@ -33,5 +33,4 @@ class RecipeStep
     {
         return $this->instruction;
     }
-
 }

@@ -2,11 +2,10 @@
 
 namespace BlueBook\Infrastructure\Persistence\Queries\Ingredients;
 
-use PDOStatement;
 use BlueBook\Domain\Ingredients\Ingredient;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\WritePDOQuery;
 
-class SaveIngredient extends AbstractPDOQuery
+class SaveIngredient extends WritePDOQuery
 {
     protected function query(): string
     {
@@ -17,7 +16,7 @@ class SaveIngredient extends AbstractPDOQuery
 
     public function execute(Ingredient $ingredient): bool
     {
-        return $this->executeWriteQuery([
+        return $this->executeQuery([
             ':id'   => (string) $ingredient->getIngredientId(),
             ':name' => $ingredient->getName(),
         ]);

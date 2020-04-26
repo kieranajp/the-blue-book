@@ -3,9 +3,9 @@
 namespace BlueBook\Infrastructure\Persistence\Queries\Recipes;
 
 use BlueBook\Domain\Recipes\RecipeId;
-use BlueBook\Infrastructure\Persistence\Queries\AbstractPDOQuery;
+use BlueBook\Infrastructure\Persistence\Queries\FetchOnePDOQuery;
 
-class GetRecipeById extends AbstractPDOQuery
+class GetRecipeById extends FetchOnePDOQuery
 {
     protected function query(): string
     {

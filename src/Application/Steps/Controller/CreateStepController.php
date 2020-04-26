@@ -26,11 +26,12 @@ class CreateStepController
 
     public function __invoke(RequestInterface $request): ResourceInterface
     {
-        $payload = json_decode($request->getBody()->getContents());
+        $payload = json_decode($request->getBody()->getContents(), true);
 
         $step = new Step(
             new StepId(),
-            $payload->name
+            $payload['name'],
+            $payload['instruction'],
         );
 
         $this->stepsRepository->save($step);

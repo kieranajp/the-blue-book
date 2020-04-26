@@ -11,7 +11,7 @@ class StepsTransformer extends TransformerAbstract
     {
         return [
             'id' => (string) $step->getStepId(),
-            'index' => (int) $step->getStepIndex(),
+            'index' => (int) $step->getIndex(),
             'instruction' => (string) $step->getInstruction(),
         ];
     }
