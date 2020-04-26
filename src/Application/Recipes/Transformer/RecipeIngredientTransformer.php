@@ -12,7 +12,10 @@ class RecipeIngredientTransformer extends TransformerAbstract
         return [
             'id' => (string) $ingredient->getIngredientId(),
             'name' => $ingredient->getName(),
-            'unit' => $ingredient->getUnit(),
+            'unit' => [
+                'name' => $ingredient->getUnit()->getName(),
+                'abbr' => $ingredient->getUnit()->getAbbr(),
+            ],
             'quantity' => $ingredient->getQuantity(),
         ];
     }

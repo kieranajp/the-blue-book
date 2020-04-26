@@ -13,4 +13,14 @@ final class UnitOfMeasure
         $this->name = $name;
         $this->abbr = $abbr;
     }
+
+    public function getName() : string
+    {
+        return $this->name;
+    }
+
+    public function getAbbr() : string
+    {
+        return $this->abbr;
+    }
 }
