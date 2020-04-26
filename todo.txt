@@ -1,6 +1,4 @@
-- OpenAPI contract testing
-- Add pagination (maybe switch to aura.sql for this)
-- Add PUT ingredients endpoint
-- Create Recipe entity
-- Content negotiation
-- API versioning
+- Research searching and filtering by label on Kindle (Kiery)
+- Get Mac setup for developing in C# .NET core
+- C# library for generating epub/mobi/ebook format
+- Build a command line application to generate the ebook
