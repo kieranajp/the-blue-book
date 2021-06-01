@@ -12,7 +12,7 @@
         "ramsey/uuid": "^3.8",
         "kieranajp/healthz": "^0.0.1",
         "monolog/monolog": "^2.0@dev",
-        "symfony/stopwatch": "^4.1",
+        "symfony/stopwatch": "^5.3",
         "nyholm/psr7": "^1.2",
         "nyholm/psr7-server": "^0.4.1",
         "zendframework/zend-httphandlerrunner": "^1.1"
