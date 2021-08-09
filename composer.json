@@ -9,7 +9,7 @@
         "league/container": "^3.3",
         "league/fractal": "^0.19.2",
         "php-ds/php-ds": "^1.2",
-        "ramsey/uuid": "^3.8",
+        "ramsey/uuid": "^4.2",
         "kieranajp/healthz": "^0.0.1",
         "monolog/monolog": "^2.0@dev",
         "symfony/stopwatch": "^4.1",
