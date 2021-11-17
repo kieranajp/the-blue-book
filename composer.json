@@ -6,7 +6,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "league/route": "^4.3",
-        "league/container": "^3.3",
+        "league/container": "^4.2",
         "league/fractal": "^0.19.2",
         "php-ds/php-ds": "^1.2",
         "ramsey/uuid": "^3.8",
