@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b75b5dbba38555e767d412971829506",
+    "content-hash": "0a61bcd986ea38c4218944964e9d7f25",
     "packages": [
         {
             "name": "kieranajp/healthz",
@@ -1588,20 +1588,20 @@
         },
         {
             "name": "kahlan/kahlan",
-            "version": "4.7.2",
+            "version": "5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kahlan/kahlan.git",
-                "reference": "025114b7f13985abceff3ba0e28cca71cb0d40e8"
+                "reference": "6f36295a8cfbe98df03262bd8c1ded4756db022a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/025114b7f13985abceff3ba0e28cca71cb0d40e8",
-                "reference": "025114b7f13985abceff3ba0e28cca71cb0d40e8",
+                "url": "https://api.github.com/repos/kahlan/kahlan/zipball/6f36295a8cfbe98df03262bd8c1ded4756db022a",
+                "reference": "6f36295a8cfbe98df03262bd8c1ded4756db022a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5"
+                "php": ">=7.1"
             },
             "require-dev": {
                 "squizlabs/php_codesniffer": "^3.4"
@@ -1611,12 +1611,12 @@
             ],
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Kahlan\\": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "Kahlan\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1638,7 +1638,11 @@
                 "testing",
                 "unit test"
             ],
-            "time": "2020-01-25T16:39:06+00:00"
+            "support": {
+                "issues": "https://github.com/kahlan/kahlan/issues",
+                "source": "https://github.com/kahlan/kahlan/tree/5.2.2"
+            },
+            "time": "2022-12-13T02:39:45+00:00"
         },
         {
             "name": "larapack/dd",
@@ -2745,5 +2749,6 @@
         "ext-json": "*",
         "ext-pdo": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
