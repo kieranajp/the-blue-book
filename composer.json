@@ -18,7 +18,7 @@
         "zendframework/zend-httphandlerrunner": "^1.1"
     },
     "require-dev": {
-        "kahlan/kahlan": "^4.7",
+        "kahlan/kahlan": "^5.2",
         "larapack/dd": "^1.1",
         "squizlabs/php_codesniffer": "^3.5",
         "vimeo/psalm": "^3.10",
